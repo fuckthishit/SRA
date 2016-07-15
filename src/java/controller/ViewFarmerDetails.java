@@ -37,20 +37,16 @@ public class ViewFarmerDetails extends HttpServlet {
             throws ServletException, IOException {
         
         ServletContext context = getServletContext();
-                     FarmersDB farmersDB = new FarmersDB();
-                     ArrayList<Farmer> listoffarms = new ArrayList<Farmer>();
-                     listoffarms = farmersDB.getFarmersDetails();
-                     for(int i=0;i<listoffarms.size();i++){
-                         String selectedparameter = request.getParameter("KKK Farm");
-                  
+                     FarmersDB farmersDB = new FarmersDB();                 
+                         String selectedparameter = request.getParameter("FarmName");
+                   HttpSession session = request.getSession();
                              Farmer selectedFarm = new Farmer();
                              selectedFarm = farmersDB.getSpecificFarmerDetails(selectedparameter);
-                             HttpSession session = request.getSession();
-                             session.setAttribute("selectedFarm", selectedFarm);
-                         
-                     }
+                            
+                             session.setAttribute("selectedFarm", selectedFarm);             
         RequestDispatcher rd = context.getRequestDispatcher("/Farmer Recommendation.jsp");
         rd.forward(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
