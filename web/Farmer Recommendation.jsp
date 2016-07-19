@@ -1,4 +1,7 @@
+<%@page import="entity.Recommendations"%>
+<%@page import="db.RecommendationDB"%>
 <%@page import="entity.Farmer"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="db.FarmersDB"%>
 <%@include file="security.jsp" %>
@@ -85,16 +88,16 @@ desired effect
               <h3 class="box-title">Farms</h3>
             </div>
             <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
+              <ul class="nav nav-pills nav-stacked" >
                   <% FarmersDB farmersDB = new FarmersDB();
                      ArrayList<Farmer> listoffarms = new ArrayList<Farmer>();
                      listoffarms = farmersDB.getFarmersDetails();
                      for(int i=0;i<listoffarms.size();i++) { %>
-                     <li><a href="ViewFarmerDetails?id=<%= listoffarms.get(i).getFarm_name() %>"><%= listoffarms.get(i).getFarm_name()%></a></li>
+                     <li class="GetFarmName"><a href="#"><%= listoffarms.get(i).getFarm_name()%></a></li>
                                     <%}%>
               </ul>
             </div>
-            <!-- /.box-body -->
+            <!-- /.box-1body -->
           </div>
 		  </div>
 		  <div class="col-md-9">
@@ -102,9 +105,9 @@ desired effect
 	  <div class="box-header with-border">
              
  
-	  <h3 class="box-title">Farm</h3>
+	  <h3 class="box-title">Farm Details</h3>
 	  </div>
-	  <div class="box-body">
+	  <div class="box-body" id="FarmDetails">
   	   <% Farmer selectedFarm = (Farmer) session.getAttribute("selectedFarm"); 
                  if(selectedFarm != null) { %>
                      
@@ -132,21 +135,22 @@ desired effect
 	   <b>Sugarcane Variety</b>
            <a class="pull-right"><%= selectedFarm.getSugarcane_variety() %></a>
 	  </div>
-	  
+	   
 	  </div>
 	  <br/>
-          <% } %>
-	  </div>       
-	  </div>
-	  
-	  <br/>
-	  <div class="box box-solid">
+          <br/>
+	  <div class="box box-solid" id="FarmDetails">
 	  <div class="box-header with-border">
 	  <h4>Recommendations</h4>
 	  </div>
-	  <div class="box-body">
-	  <table class="table table-bordered">
+	  <div class="box-body" >
+	  <table class="table table-bordered" >
 	  <tbody>
+              <% 
+                 RecommendationDB recomDB = new RecommendationDB();
+                 ArrayList<Recommendations> recomList = recomDB.getRecommendationbyOwner(selectedFarm.getFarm_name()); 
+                 if(recomList!= null && selectedFarm != null){
+                 for(int i=0;i<recomList.size();i++) { %>
 		<tr>
 		<th>Recommendation</th>
 		<th>Description</th>
@@ -155,17 +159,20 @@ desired effect
 		<th colspan="2"></th>
 	  </tr>
 	  <tr>
-		<td>Add Fertilizer</td>
-		<td>Add 15 ml of the type A</td>
-		<td>Bryll Joey Delfin</td>
-		<td>06/08/2016</td>
+		
+                <td><%= recomList.get(i).getRecommendation() %></td>
+                <td><%= recomList.get(i).getDescription() %></td>
+                <td><%= recomList.get(i).getCreated_by() %></td>
+                <td><%= recomList.get(i).getDate_created() %></td>
 		<td><button class="btn btn-xs btn-danger">X</button></td>
 		<td><button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></button></td>
 	  </tr>
+          <% } %>
+              <% } %>
 	  </tbody>
 	  </table>
 	  <br/>
-	
+	  
 	  <div class="row">
 	  <div class="col-md-3">
 	  </div>
@@ -209,9 +216,15 @@ desired effect
 	  <div class="col-md-3">
 	  </div>
 	  </div>
+          <% }%>
 	  </div>
 	  
 	  </div>
+	  </div>       
+	  </div>
+	  
+	  
+          
 	  <br/>
 	  
 	  <div class="box box-solid">
@@ -244,6 +257,24 @@ desired effect
 
 <!-- jQuery 2.2.0 -->
 <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
+                    
+<script>
+   $(document).ready(function (){
+       $("li.GetFarmName").click(function (){
+       
+    
+                      var FarmName = $(this).find("a").text();
+                      
+                      $.getJSON('ViewFarmerDetails',{"FarmName":FarmName,
+                       function(resp){
+                          $('#FarmDetails').empty().load(document.URL +  ' #FarmDetails').load(document.URL +  ' #FarmDetails');
+                       }
+        });
+    });
+       
+       
+   });
+</script>
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
