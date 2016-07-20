@@ -1,7 +1,7 @@
+
 <%@page import="entity.Recommendations"%>
 <%@page import="db.RecommendationDB"%>
 <%@page import="entity.Farmer"%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="db.FarmersDB"%>
 <%@include file="security.jsp" %>
@@ -148,9 +148,11 @@ desired effect
 	  <tbody>
               <% 
                  RecommendationDB recomDB = new RecommendationDB();
-                 ArrayList<Recommendations> recomList = recomDB.getRecommendationbyOwner(selectedFarm.getFarm_name()); 
-                 if(recomList!= null && selectedFarm != null){
-                 for(int i=0;i<recomList.size();i++) { %>
+                 ArrayList<Recommendations> listofrec = new ArrayList<Recommendations>();
+                 listofrec = recomDB.getRecommendationsbyUserName(selectedFarm.getUsername());
+                 if(listofrec!= null && selectedFarm != null){
+                     System.out.println(listofrec.size()+"");
+                 for(int i=0;i<listofrec.size();i++) { %>
 		<tr>
 		<th>Recommendation</th>
 		<th>Description</th>
@@ -160,15 +162,14 @@ desired effect
 	  </tr>
 	  <tr>
 		
-                <td><%= recomList.get(i).getRecommendation() %></td>
-                <td><%= recomList.get(i).getDescription() %></td>
-                <td><%= recomList.get(i).getCreated_by() %></td>
-                <td><%= recomList.get(i).getDate_created() %></td>
+              <td><%= listofrec.get(i).getRecommendation() %></td>
+                <td><%= listofrec.get(i).getDescription() %></td>
+                <td><%= listofrec.get(i).getCreated_by() %></td>
+                <td><%= listofrec.get(i).getDate_created() %></td>
 		<td><button class="btn btn-xs btn-danger">X</button></td>
 		<td><button class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></button></td>
 	  </tr>
-          <% } %>
-              <% } %>
+          <% }  } %>
 	  </tbody>
 	  </table>
 	  <br/>
@@ -216,10 +217,12 @@ desired effect
 	  <div class="col-md-3">
 	  </div>
 	  </div>
+          </div>
+          </div>
           <% }%>
-	  </div>
 	  
-	  </div>
+	  
+	  
 	  </div>       
 	  </div>
 	  
