@@ -255,7 +255,7 @@ public class FarmersDB {
             String query = "SELECT * from farmers fs join farms f on fs.username = f.owner join production p on f.owner = p.owner WHERE f.farm_name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, Farmname);
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = stmt.executeQuery();
             Farmer farmer = null;
             if (rs.next()) {
                 do {
@@ -270,7 +270,7 @@ public class FarmersDB {
                     farmer.setArea_harveted(rs.getDouble("area_harvested"));
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
-                    farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
+                  //  farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
 
                 } while (rs.next());
