@@ -60,6 +60,10 @@
         <servlet-name>CheckUsernameAvailability</servlet-name>
         <servlet-class>controller.mobile.CheckUsernameAvailability</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewFarmInfo</servlet-name>
+        <servlet-class>controller.ViewFarmInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>CheckUsernameAvailability</servlet-name>
         <url-pattern>/CheckUsernameAvailability</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFarmInfo</servlet-name>
+        <url-pattern>/ViewFarmInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

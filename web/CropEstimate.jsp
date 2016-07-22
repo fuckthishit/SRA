@@ -66,7 +66,7 @@ body {
   height: 30px;
 }
 #chart #numbers li span {
-  color: #;
+  color: #000;
   position: absolute;
   bottom: 0;
   right: 10px;
@@ -85,7 +85,7 @@ body {
   width: 100px;
   height: 300px;
   margin: 0;
-  color: #;
+  color: #000;
   text-align: center;
   position: relative;
 }
@@ -102,13 +102,13 @@ body {
   cursor: pointer;
 }
 #chart #bars li .bar:hover:before {
-  color: #;
+  color: #000;
   content: attr(data-percentage) '%';
   position: relative;
   bottom: 20px;
 }
 #chart #bars li span {
-  color: #;
+  color: #000;
   width: 100%;
   position: absolute;
   bottom: -2em;
@@ -174,7 +174,8 @@ desired effect
 	  <label class="col-md-2">District </label>
 	   <table class="table table-hover">
 	  <tbody>
-	  <tr>Farmer</th>
+              <tr>
+                <th>Farmer</th>
 		<th>Productivity</th>
 		<th>Total Area Harvested</th>
 		<th>Yield</th>
@@ -187,7 +188,16 @@ desired effect
 	  </tr>
 	  </tbody>
 	  </table>
-	  <div id="chart">
+          <br>
+          
+	  <div id="chart" class="box box-solid">
+              <div class="box-header with-border">
+                  <h4>Graph</h4>
+              </div>
+              <br>
+              <br>
+              <br>
+                 
   <ul id="numbers">
     <li><span>100%</span></li>
     <li><span>90%</span></li>
@@ -202,8 +212,9 @@ desired effect
     <li><span>0%</span></li>
   </ul>
   
+              
   <ul id="bars">
-    <li><div data-percentage="100" class="bar"></div><span>Option 1</span></li>
+    <li><div data-percentage="50" class="bar"></div><span>Option 1</span></li>
     <li><div data-percentage="33" class="bar"></div><span>Option 2</span></li>
     <li><div data-percentage="54" class="bar"></div><span>Option 3</span></li>
     <li><div data-percentage="94" class="bar"></div><span>Option 4</span></li>

@@ -245,22 +245,22 @@ public class FarmersDB {
             String query = "SELECT * from farmers fs join farms f on fs.username = f.owner join production p on f.owner = p.owner WHERE f.farm_name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, Farmname);
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = stmt.executeQuery();
             Farmer farmer = null;
             if (rs.next()) {
                 do {
                     farmer = new Farmer();
-                    farmer.setUsername(rs.getString(1));
-                    farmer.setCell_num(rs.getString(2));
-                    farmer.setName(rs.getString(3));
-                    farmer.setGender(rs.getInt(4));
-                    farmer.setEducation(rs.getInt(5));
-                    farmer.setCivil_status(rs.getInt(6));
-                    farmer.setAddress(rs.getString(7));
+                    farmer.setUsername(rs.getString("username"));
+                    farmer.setCell_num(rs.getString("cell_num"));
+                    farmer.setName(rs.getString("name"));
+                    farmer.setGender(rs.getInt("gender"));
+                    farmer.setEducation(rs.getInt("education"));
+                    farmer.setCivil_status(rs.getInt("civil_status"));
+                    farmer.setAddress(rs.getString("address"));
                     farmer.setArea_harveted(rs.getDouble("area_harvested"));
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
-                    farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
+                //    farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
 
                 } while (rs.next());
@@ -298,7 +298,7 @@ public class FarmersDB {
                     farmer.setArea_harveted(rs.getDouble("area_harvested"));
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
-                    farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
+                    //farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
                     farmers.add(farmer);
                 } while (rs.next());
