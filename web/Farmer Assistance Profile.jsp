@@ -150,7 +150,7 @@
                     for (int i =0; i < farms.size(); i++)
                     {
                         %>
-                        <li class="GetFarmInfo"><a href="#"><%= farms.get(i) %></a> </li>
+                        <li class="GetFarmInfo farms"><a href="#"><%= farms.get(i) %></a> </li>
              <%        
                     }
    } 
@@ -367,7 +367,7 @@
     });
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
+          zoom: 15,
           center: {lat: latCenter, lng: lngCenter},
           mapTypeId: google.maps.MapTypeId.TERRAIN
         });

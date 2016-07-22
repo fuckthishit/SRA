@@ -64,6 +64,10 @@
         <servlet-name>ViewFarmInfo</servlet-name>
         <servlet-class>controller.ViewFarmInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddBase</servlet-name>
+        <servlet-class>controller.mobile.AddBase</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>ViewFarmInfo</servlet-name>
         <url-pattern>/ViewFarmInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBase</servlet-name>
+        <url-pattern>/AddBase</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

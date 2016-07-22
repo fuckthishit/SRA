@@ -18,6 +18,7 @@ public class GetFarmDetails extends BaseServlet {
 
         FarmersDB farmersDB = new FarmersDB();
         HttpSession session = request.getSession();
+        System.out.println(request.getParameter("farm_name")+"********");
         response.getWriter().write(
                 new Gson().toJson(
                         farmersDB.getFarmDetails(request.getParameter("farm_name"),
