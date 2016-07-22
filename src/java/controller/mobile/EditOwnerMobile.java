@@ -38,6 +38,7 @@ public class EditOwnerMobile extends HttpServlet {
         farmer.setCivil_status(Integer.parseInt(request.getParameter("civil")));
         farmer.setEducation(Integer.parseInt(request.getParameter("education")));
         farmer.setGender(Integer.parseInt(request.getParameter("gender")));
+        farmer.setName(request.getParameter("name"));
         farmer.setUsername(request.getParameter("username"));
         response.getWriter().write(farmersDB.editFarmer(farmer)+"");
     }

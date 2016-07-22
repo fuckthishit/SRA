@@ -106,8 +106,18 @@ public class FarmersDB {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into farmers(username) values (?)";
+            String query = "select username from farmers where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+           if (rs.next()){
+               rs.close();
+               pstmt.close();
+               conn.close();
+               return false;
+           }
+             query = "insert into farmers(username) values (?)";
+             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, username);
             int i = pstmt.executeUpdate();
             pstmt.close();
@@ -121,19 +131,19 @@ public class FarmersDB {
 
     public boolean editFarmer(Farmer newFarmer) {
         try {
+            System.out.println(newFarmer.getUsername());
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "update  farmers set username = ?, cell_num = ?, name = ?, gender = ?, education = ?, civil_status = ?, address = ?\n"
+            String query = "update  farmers set cell_num = ?, name = ?, gender = ?, education = ?, civil_status = ?, address = ?\n"
                     + "where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, newFarmer.getUsername());
-            pstmt.setString(3, newFarmer.getUsername());
-            pstmt.setString(2, newFarmer.getCell_num());
-            pstmt.setInt(4, newFarmer.getGender());
-            pstmt.setInt(5, newFarmer.getEducation());
-            pstmt.setInt(6, newFarmer.getCivil_status());
-            pstmt.setString(7, newFarmer.getAddress());
-            pstmt.setString(8, newFarmer.getUsername());
+            pstmt.setString(1, newFarmer.getCell_num());
+            pstmt.setString(2, newFarmer.getName());
+            pstmt.setInt(3, newFarmer.getGender());
+            pstmt.setInt(4, newFarmer.getEducation());
+            pstmt.setInt(5, newFarmer.getCivil_status());
+            pstmt.setString(6, newFarmer.getAddress());
+            pstmt.setString(7, newFarmer.getUsername());
             int i = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -245,22 +255,22 @@ public class FarmersDB {
             String query = "SELECT * from farmers fs join farms f on fs.username = f.owner join production p on f.owner = p.owner WHERE f.farm_name = ? ";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, Farmname);
-            ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery(query);
             Farmer farmer = null;
             if (rs.next()) {
                 do {
                     farmer = new Farmer();
-                    farmer.setUsername(rs.getString("username"));
-                    farmer.setCell_num(rs.getString("cell_num"));
-                    farmer.setName(rs.getString("name"));
-                    farmer.setGender(rs.getInt("gender"));
-                    farmer.setEducation(rs.getInt("education"));
-                    farmer.setCivil_status(rs.getInt("civil_status"));
-                    farmer.setAddress(rs.getString("address"));
+                    farmer.setUsername(rs.getString(1));
+                    farmer.setCell_num(rs.getString(2));
+                    farmer.setName(rs.getString(3));
+                    farmer.setGender(rs.getInt(4));
+                    farmer.setEducation(rs.getInt(5));
+                    farmer.setCivil_status(rs.getInt(6));
+                    farmer.setAddress(rs.getString(7));
                     farmer.setArea_harveted(rs.getDouble("area_harvested"));
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
-                //    farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
+                    farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
 
                 } while (rs.next());

@@ -32,7 +32,8 @@ public class CreateNewOwnerMobile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         FarmersDB farmersDB = new FarmersDB();
-        response.getWriter().write(farmersDB.addFarmer(request.getParameter("username"))+"");
+        String result = farmersDB.addFarmer(request.getParameter("username"))+"";
+        response.getWriter().write(result);
         
     }
 
