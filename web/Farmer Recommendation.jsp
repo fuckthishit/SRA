@@ -180,7 +180,7 @@ desired effect
 	  <div class="col-md-3">
 	  
 	  <button class="btn btn-sm btn-info btn-flat pull-left col-md-10"  data-toggle="modal" data-target="#myModal">Add</button>
-	  <div class="modal modal-primary fade" id="myModal"">
+	  <div class="modal modal-primary fade" id="myModal">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
