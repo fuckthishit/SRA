@@ -238,7 +238,15 @@ desired effect
                 <td>3,850.00</td>
                 <td>350.00</td>
                 <td>4,200.00</td>
-                <td>84.00</td>
+                <td>
+                    <div class="progress-group">
+                          <span class="progress-number"><b>84 %</b></span>
+
+                                         <div class="progress sm">
+                                     <div class="progress-bar progress-bar-green" style="width: 84%"></div>
+                                        </div>
+                                        </div> <!-- closer of progress bars -->  
+                </td>
             </tr>
                     </tbody>
                 </table>

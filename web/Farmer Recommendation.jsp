@@ -107,7 +107,7 @@ desired effect
  
 	  <h3 class="box-title">Farm Details</h3>
 	  </div>
-	  <div class="box-body" id="FarmDetails">
+	  <div class="box-body details" id="FarmDetails">
   	   <% Farmer selectedFarm = (Farmer) session.getAttribute("selectedFarm"); 
                  if(selectedFarm != null) { %>
                      
@@ -137,9 +137,10 @@ desired effect
 	  </div>
 	   
 	  </div>
+          </div>  
 	  <br/>
           <br/>
-	  <div class="box box-solid" id="FarmDetails">
+	  <div class="box box-solid details" id="RecomDetails">
 	  <div class="box-header with-border">
 	  <h4>Recommendations</h4>
 	  </div>
@@ -223,7 +224,7 @@ desired effect
 	  
 	  
 	  
-	  </div>       
+	       
 	  </div>
 	  
 	  
@@ -270,7 +271,8 @@ desired effect
                       
                       $.getJSON('ViewFarmerDetails',{"FarmName":FarmName,
                        function(resp){
-                          $('#FarmDetails').empty().load(document.URL +  ' #FarmDetails').load(document.URL +  ' #FarmDetails');
+                          $('.details').empty().load(document.URL +  ' .details').load(document.URL +  ' .details');
+                         // $('#RecomDetails').empty().load(document.URL +  ' #RecomDetails').load(document.URL +  ' #RecomDetails');
                        }
         });
     });

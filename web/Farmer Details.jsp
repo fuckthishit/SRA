@@ -256,7 +256,14 @@
                   <td>John Doe</td>
 				<td>1.23</td>
                   <td>35%</td>
-				  <td>22</td>
+				  <td> 
+                                      <div class="progress-group">
+                                         <span class="progress-number"><b>90 %</b></span>
+                                         <div class="progress sm">
+                                     <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                        </div>
+                                        </div> <!-- closer of progress bars -->  
+                                  </td>
 				   <td>tpeh31</td>
 				   <td>3%</td>
 				  <td>77%</td>
@@ -267,7 +274,15 @@
                   <td href="">henry ford</td>
 					<td>1.23</td>
                   <td>80%</td>
-				   <td>22ha</td>
+                  <td>
+                      <div class="progress-group">
+                          <span class="progress-number"><b>20 %</b></span>
+
+                                         <div class="progress sm">
+                                     <div class="progress-bar progress-bar-danger" style="width: 20%"></div>
+                                        </div>
+                                        </div> <!-- closer of progress bars -->  
+                  </td>
 				   <td>TPEH43</td>
 				   <td>3%</td>
 				  <td>77%</td>
@@ -278,7 +293,13 @@
                 <td href="">Michael Johnathan</td>
 				<td>1.23</td>
                   <td>80%</td>
-				   <td>22ha</td>
+				   <td><div class="progress-group">
+                                           <span class="progress-number"><b>40 %</b></span>
+
+                                         <div class="progress sm">
+                                     <div class="progress-bar progress-bar-warning" style="width: 40%"></div>
+                                        </div>
+                                        </div> <!-- closer of progress bars -->  </td>
 				   <td>TPEH43</td>
 				   <td>3%</td>
 				  <td>77%</td>
@@ -288,7 +309,15 @@
                 <td href="">Danny Frisk</td>
 				<td>1.23</td>
                   <td>80%</td>
-				   <td>22ha</td>
+                  <td>
+                      <div class="progress-group">
+                          <span class="progress-number"><b>80 %</b></span>
+
+                                         <div class="progress sm">
+                                     <div class="progress-bar progress-bar-green" style="width: 80%"></div>
+                                        </div>
+                                        </div> <!-- closer of progress bars -->  
+                  </td>
 				   <td>TPEH43</td>
 				   <td>3%</td>
 				  <td>77%</td>
