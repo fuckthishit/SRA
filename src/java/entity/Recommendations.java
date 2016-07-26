@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entity;
+package entity;
+
+import java.util.Date;
 
 /**
  *
@@ -14,6 +16,9 @@ public class Recommendations {
     private String farm_name;
     private String recommendation;
     private String status;
+      private String description;
+      private Date date_created;
+     private String remarks;
     private String created_by;
 
     /**
@@ -84,6 +89,48 @@ public class Recommendations {
      */
     public void setCreated_by(String created_by) {
         this.created_by = created_by;
+    }
+
+    /**
+     * @return the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description the description to set
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
+     * @return the date_created
+     */
+    public Date getDate_created() {
+        return date_created;
+    }
+
+    /**
+     * @param date_created the date_created to set
+     */
+    public void setDate_created(Date date_created) {
+        this.date_created = date_created;
+    }
+
+    /**
+     * @return the remarks
+     */
+    public String getRemarks() {
+        return remarks;
+    }
+
+    /**
+     * @param remarks the remarks to set
+     */
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
     
 }

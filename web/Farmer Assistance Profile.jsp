@@ -301,7 +301,7 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLocM7SW5TFCiHY1Fn3o5ImYysz8gLkgo"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeDrq1s94WyUbxCZRoTjVi3xk09VMHb4U&callback=initMap"></script>
 <script>
          var triangleCoords;
          var bermudaTriangle;
