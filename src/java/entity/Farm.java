@@ -10,15 +10,14 @@ package entity;
  * @author Bryll Joey Delfin
  */
 public class Farm {
+
     private String owner;
     private String farm_name;
     private String district;
-    private Double area;
-    private String soil_type;
-    private String farming_system;
-    private String sugarcane_variety;
-    private Integer furrow_distance;
-    private Integer tiller_number;
+    private double area;
+    private String management_type;
+    private String address;
+    private double nitrogen, phosporus, potassium, ph_level;
     private String boundaries;
     private double latCenter;
     private double lngCenter;
@@ -68,85 +67,85 @@ public class Farm {
     /**
      * @return the area
      */
-    public Double getArea() {
+    public double getArea() {
         return area;
     }
 
     /**
      * @param area the area to set
      */
-    public void setArea(Double area) {
+    public void setArea(double area) {
         this.area = area;
     }
 
     /**
-     * @return the soil_type
+     * @return the management_type
      */
-    public String getSoil_type() {
-        return soil_type;
+    public String getManagement_type() {
+        return management_type;
     }
 
     /**
-     * @param soil_type the soil_type to set
+     * @param management_type the management_type to set
      */
-    public void setSoil_type(String soil_type) {
-        this.soil_type = soil_type;
+    public void setManagement_type(String management_type) {
+        this.management_type = management_type;
     }
 
     /**
-     * @return the farming_system
+     * @return the nitrogen
      */
-    public String getFarming_system() {
-        return farming_system;
+    public double getNitrogen() {
+        return nitrogen;
     }
 
     /**
-     * @param farming_system the farming_system to set
+     * @param nitrogen the nitrogen to set
      */
-    public void setFarming_system(String farming_system) {
-        this.farming_system = farming_system;
+    public void setNitrogen(double nitrogen) {
+        this.nitrogen = nitrogen;
     }
 
     /**
-     * @return the sugarcane_variety
+     * @return the phosporus
      */
-    public String getSugarcane_variety() {
-        return sugarcane_variety;
+    public double getPhosporus() {
+        return phosporus;
     }
 
     /**
-     * @param sugarcane_variety the sugarcane_variety to set
+     * @param phosporus the phosporus to set
      */
-    public void setSugarcane_variety(String sugarcane_variety) {
-        this.sugarcane_variety = sugarcane_variety;
+    public void setPhosporus(double phosporus) {
+        this.phosporus = phosporus;
     }
 
     /**
-     * @return the furrow_distance
+     * @return the potassium
      */
-    public Integer getFurrow_distance() {
-        return furrow_distance;
+    public double getPotassium() {
+        return potassium;
     }
 
     /**
-     * @param furrow_distance the furrow_distance to set
+     * @param potassium the potassium to set
      */
-    public void setFurrow_distance(Integer furrow_distance) {
-        this.furrow_distance = furrow_distance;
+    public void setPotassium(double potassium) {
+        this.potassium = potassium;
     }
 
     /**
-     * @return the tiller_number
+     * @return the ph_level
      */
-    public Integer getTiller_number() {
-        return tiller_number;
+    public double getPh_level() {
+        return ph_level;
     }
 
     /**
-     * @param tiller_number the tiller_number to set
+     * @param ph_level the ph_level to set
      */
-    public void setTiller_number(Integer tiller_number) {
-        this.tiller_number = tiller_number;
+    public void setPh_level(double ph_level) {
+        this.ph_level = ph_level;
     }
 
     /**
@@ -159,7 +158,7 @@ public class Farm {
     /**
      * @param boundaries the boundaries to set
      */
-    public void setBoundaries(String boundaries) {  
+    public void setBoundaries(String boundaries) {
         this.boundaries = boundaries;
     }
 
@@ -190,5 +189,19 @@ public class Farm {
     public void setLngCenter(double lngCenter) {
         this.lngCenter = lngCenter;
     }
-    
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 }

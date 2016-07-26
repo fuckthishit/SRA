@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package controller.mobile;
 
 import db.FarmersDB;
 import entity.Farmer;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author micha
  */
-public class EditOwnerMobile extends HttpServlet {
+public class CreateNewOwnerMobile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,14 +32,9 @@ public class EditOwnerMobile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         FarmersDB farmersDB = new FarmersDB();
-        Farmer farmer = new Farmer();
-        farmer.setAddress(request.getParameter("address"));
-        farmer.setCell_num(request.getParameter("cell_num"));
-        farmer.setCivil_status(Integer.parseInt(request.getParameter("civil")));
-        farmer.setEducation(Integer.parseInt(request.getParameter("education")));
-        farmer.setGender(Integer.parseInt(request.getParameter("gender")));
-        farmer.setUsername(request.getParameter("username"));
-        response.getWriter().write(farmersDB.editFarmer(farmer)+"");
+        String result = farmersDB.addFarmer(request.getParameter("username"))+"";
+        response.getWriter().write(result);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

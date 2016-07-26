@@ -150,12 +150,10 @@
                     for (int i =0; i < farms.size(); i++)
                     {
                         %>
-                        <li class="farms"><a href="#"><%= farms.get(i) %></a> </li>
-             <% 
-                    
+                        <li class="GetFarmInfo farms"><a href="#"><%= farms.get(i) %></a> </li>
+             <%        
                     }
    } 
-             
              %>
               </ul>
             </div>
@@ -167,34 +165,39 @@
               <h3 class="box-title">Farm Name</h3>
             </div>
             <!-- /.box-header -->
-            <div class="box-body">
-
+            <div class="box-body" id="FarmInfo">
+<% Farmer farmsd = (Farmer)session.getAttribute("farmsd"); 
+                if (farmsd!=null){
+                    %>
+                      
+             
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-              <p class="text-muted">Malibu, California</p>
+              <p class="text-muted"><%= farmsd.getAddress() %></p>
 
                <hr>
 
               <strong>Area</strong>
 
-              <p>1000</p>
+              <p><%= farmsd.getArea_harveted() %></p>
                <hr>
 
               <strong>Tons Cane Produced</strong>
 
-              <p>1000</p>
+              <p><%= farmsd.getTons_cane() %></p>
                <hr>
 
               <strong>Avg. Produced</strong>
 
-              <p>1000</p>
+              <p><%= farmsd.getLkg() %></p>
               
               <hr>
 
               <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
 
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+              <% }%>
             </div>
             <!-- /.box-body -->
           </div>
@@ -301,7 +304,25 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeDrq1s94WyUbxCZRoTjVi3xk09VMHb4U&callback=initMap"></script>
+<script>
+    $(document).ready(function (){
+       $("li.GetFarmInfo").click(function (){
+       
+    
+                      var FarmName = $(this).find("a").text();
+                      
+                      $.getJSON('ViewFarmInfo',{"FarmName":FarmName,
+                       function(resp){
+                          $('#FarmInfo').empty().load(document.URL +  ' #FarmInfo').load(document.URL +  ' #FarmInfo');
+                       }
+        });
+    });
+       
+       
+   });
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBLocM7SW5TFCiHY1Fn3o5ImYysz8gLkgo"></script>
 <script>
          var triangleCoords;
          var bermudaTriangle;
@@ -346,7 +367,7 @@
     });
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 5,
+          zoom: 15,
           center: {lat: latCenter, lng: lngCenter},
           mapTypeId: google.maps.MapTypeId.TERRAIN
         });

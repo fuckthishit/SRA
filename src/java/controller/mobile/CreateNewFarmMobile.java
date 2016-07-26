@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package controller;
+package controller.mobile;
 
-import db.FarmersDB;
-import entity.Farmer;
+import db.FarmsDB;
+import entity.Farm;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,11 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author micha
- */
-public class CreateNewOwnerMobile extends HttpServlet {
+public class CreateNewFarmMobile extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,8 +22,14 @@ public class CreateNewOwnerMobile extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FarmersDB farmersDB = new FarmersDB();
-        response.getWriter().write(farmersDB.addFarmer(request.getParameter("username"))+"");
+        
+        Farm farm = new Farm();
+        farm.setOwner(request.getParameter("owner"));
+        farm.setFarm_name(request.getParameter("farm_name"));
+        farm.setBoundaries(request.getParameter("boundaries"));
+        farm.setArea(Double.parseDouble(request.getParameter("area")));
+        FarmsDB farmDB = new FarmsDB();
+        response.getWriter().write(farmDB.createFarm(farm)+"");
         
     }
 

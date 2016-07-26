@@ -1,3 +1,4 @@
+
 <header class="main-header">
 
     <!-- Logo -->
@@ -76,7 +77,9 @@
         <!-- Optionally, you can add icons to the links -->
         <li><a href="Homepage.jsp"><span>Home</span></a></li>
         <li><a href="GetFarmersList"><span>Farmer Assistance</span> </a></li>
+        <li><a href="Farmer Details.jsp"><span>Farm Information</span></a></li>
         <li><a href="Farmer Recommendation.jsp"><span>Farmer Recommendation</span> </a></li>
+         <li><a href="Weather Trends and Forecast.jsp"><span>Weather Trends and Forecast</span> </a></li>
         <li><a href="Disaster Survey.jsp"><span>Disaster Survey</span> </a></li>
         <li><a href="GetProjects"><span>Projects</span> </a></li>
         <li><a href="Simulation.jsp"><span>Simulation</span> </a></li>

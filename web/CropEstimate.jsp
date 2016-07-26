@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <!-- for bar graph ccs -->
+  <!-- for bar graph ccs -->w
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect.
@@ -66,7 +66,7 @@ body {
   height: 30px;
 }
 #chart #numbers li span {
-  color: #;
+  color: #000;
   position: absolute;
   bottom: 0;
   right: 10px;
@@ -85,7 +85,7 @@ body {
   width: 100px;
   height: 300px;
   margin: 0;
-  color: #;
+  color: #000;
   text-align: center;
   position: relative;
 }
@@ -102,13 +102,13 @@ body {
   cursor: pointer;
 }
 #chart #bars li .bar:hover:before {
-  color: #;
+  color: #000;
   content: attr(data-percentage) '%';
   position: relative;
   bottom: 20px;
 }
 #chart #bars li span {
-  color: #;
+  color: #000;
   width: 100%;
   position: absolute;
   bottom: -2em;

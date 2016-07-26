@@ -30,11 +30,11 @@
     </servlet>
     <servlet>
         <servlet-name>CreateNewOwnerMobile</servlet-name>
-        <servlet-class>controller.CreateNewOwnerMobile</servlet-class>
+        <servlet-class>controller.mobile.CreateNewOwnerMobile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditOwnerMobile</servlet-name>
-        <servlet-class>controller.EditOwnerMobile</servlet-class>
+        <servlet-class>controller.mobile.EditOwnerMobile</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GetFarmDetails</servlet-name>
@@ -47,6 +47,26 @@
     <servlet>
         <servlet-name>CreateProject</servlet-name>
         <servlet-class>controller.CreateProject</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNewFarmMobile</servlet-name>
+        <servlet-class>controller.mobile.CreateNewFarmMobile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditFarmDetailsMobile</servlet-name>
+        <servlet-class>controller.mobile.EditFarmDetailsMobile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckUsernameAvailability</servlet-name>
+        <servlet-class>controller.mobile.CheckUsernameAvailability</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFarmInfo</servlet-name>
+        <servlet-class>controller.ViewFarmInfo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddBase</servlet-name>
+        <servlet-class>controller.mobile.AddBase</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -88,7 +108,6 @@
         <servlet-name>GetFarmDetails</servlet-name>
         <url-pattern>/GetFarmDetails</url-pattern>
     </servlet-mapping>
-	
     <servlet-mapping>
         <servlet-name>ViewFarmerDetails</servlet-name>
         <url-pattern>/ViewFarmerDetails</url-pattern>
@@ -96,6 +115,26 @@
     <servlet-mapping>
         <servlet-name>CreateProject</servlet-name>
         <url-pattern>/CreateProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewFarmMobile</servlet-name>
+        <url-pattern>/CreateNewFarmMobile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditFarmDetailsMobile</servlet-name>
+        <url-pattern>/EditFarmDetailsMobile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckUsernameAvailability</servlet-name>
+        <url-pattern>/CheckUsernameAvailability</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFarmInfo</servlet-name>
+        <url-pattern>/ViewFarmInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBase</servlet-name>
+        <url-pattern>/AddBase</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

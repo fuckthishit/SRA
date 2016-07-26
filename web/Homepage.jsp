@@ -62,20 +62,30 @@ desired effect
 
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+  <section class="content-header">
       <h1>
         Home
       </h1>
     </section>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    
 
     <!-- Main content -->
     <section class="content">
 
       <!-- Your Page Content Here -->
-	  
+      <div class="row">
+	 <div class="col-md-9" > 
 	  <div class="box box-solid">
+              <div class="box-header with-border">
+    <h1 class="box-title">Area Harvested</h1>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <!-- In box-tools add this button if you intend to use the contacts pane -->
+      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
 	  <div class="box-body with-border">
 	  <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:440px;width:700px;'><div id='gmap_canvas' style='height:440px;width:700px;'></div><div><small><a href="http://embedgooglemaps.com">									embed google maps							</a></small></div><div><small><a href="https://termsandcondiitionssample.com">terms and conditions sample</a></small></div><style>#gmap_canvas img{max-width:none!important;background:none!important}</style></div><script type='text/javascript'>function init_map(){var myOptions = {zoom:10,center:new google.maps.LatLng(14.5654684,120.99316880000003),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(14.5654684,120.99316880000003)});infowindow = new google.maps.InfoWindow({content:'<strong>Title</strong><br>de la salle university manila<br>'});google.maps.event.addListener(marker, 'click', function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);</script>
 	  <br/>
@@ -83,33 +93,174 @@ desired effect
 	  <div class="col-md-2">
 	  <label>Estimated Sugar: </label><p>1000 lkg</p>
 	  </div>
-	  <div class="col-md-2">
-	  </div>
+	
 	  <div class="col-md-2">
 	  <label>Actual Sugar: </label><p>900 lkg</p>
+          </div>
 	  </div>
-	  <div class="col-md-6">
-	  </div>
-	  </div>
-	  <br/>
 	  
-	  <div class="box box-info">
-            </div>
+	   </div>
+	   </div>
+             </div>
+       <div class="col-md-12" > 
+	  <div class="box box-solid">
+              <div class="box-header with-border">
+    <h1 class="box-title">Area Harvested</h1>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <!-- In box-tools add this button if you intend to use the contacts pane -->
+      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
             <div class="box-body">
               <div class="chart">
                 <canvas id="lineChart" style="height: 250px; width: 511px;" width="511" height="250"></canvas>
               </div>
+                </div>
+              </div>
+           </div>
+           
+            <!-- /.box-body -->
+         
+	   <br/>
+           
+           <div class="col-md-6">
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Donut Chart</h3>
+
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" type="button" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button class="btn btn-box-tool" type="button" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas width="892" height="446" id="pieChart" style="width: 714px; height: 357px;"></canvas>
             </div>
             <!-- /.box-body -->
           </div>
+          <!-- /.box -->
+        </div><!-- donut chart end -->
+         <div class="col-md-5">
+            <div class="box box-info">
+            <div class="box-header with-border ">
+    <h1 class="box-title">Standing Crop</h1>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <!-- In box-tools add this button if you intend to use the contacts pane -->
+      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div><!-- /.box-header -->
+        <table class="table table-bordered" >
+                    <tbody>
+            <tr>
+		<th>Particulars</th>
+		<th>Estimated Production</th>	
+            </tr>
+            <tr>	
+                <td>Area</td>
+                <td>800.00</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+           </div>
+         <!-- /.box-1body -->  
+                <!-- closer of B -->
+             <div class="col-md-5" > 
+                <div class="box box-info">
+            <div class="box-header with-border">
+    <h1 class="box-title">Area Planted and Ratooned for Crop Year 2015-2016</h1>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <!-- In box-tools add this button if you intend to use the contacts pane -->
+      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div><!-- /.box-header -->
+                <div class="box-body">
+              
 	  
-	  </div>
-	  <br/>
-
+           
+            <div class="box-body no-padding">
+                <table class="table table-bordered" >
+                    <tbody>
+            <tr>
+		<th>Crop Class</th>
+		<th>Previous</th>
+                <th>This Week</th>
+                <th>To Date</th>
+            </tr>
+            <tr>	
+                <td>Plant Cane</td>
+                <td>803.00</td>
+                <td>86.00</td>
+                <td>889.00</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+         <!-- /.box-1body -->
+		 
+            </div><!-- /.box-body -->
+            </div>
+	  </div><!-- /.end of C -->
+          
+           <div class="col-md-10" > 
+           <div class="box box-info">
+            <div class="box-header with-border">
+    <h1 class="box-title">Area Harvested</h1>
+    <div class="box-tools pull-right">
+      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      <!-- In box-tools add this button if you intend to use the contacts pane -->
+      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    </div>
+  </div>
+            
+                
+	  
+            <div class="box-body no-padding">
+                <table class="table table-bordered" >
+                    <tbody>
+            <tr>
+		<th>Particulars</th>
+		<th>Estimated Production</th>
+		<th>Previous</th>
+		<th>This Week</th>
+                <th>To Date</th>
+                <th>Percent Completed</th>	
+            </tr>
+            <tr>	
+                <td>Area</td>
+                <td>5,000.00</td>
+                <td>3,850.00</td>
+                <td>350.00</td>
+                <td>4,200.00</td>
+                <td>84.00</td>
+            </tr>
+                    </tbody>
+                </table>
+            </div>
+           
+          <!-- /.box-1body -->
+            <!-- closer of A-->
+		  </div>
+            </div><!-- /.box-body -->          
+                <br>
+                
+      </div>
     </section>
+	  <br/>
+          
+ </div>
+ 
     <!-- /.content -->
   </div>
-</div>
+    </body>
+
+ 
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -143,6 +294,77 @@ desired effect
     };
 
 	lineChart.Line(lineChartData);
+        
+          //-------------
+    //- PIE CHART -
+    //-------------
+    // Get context with jQuery - using jQuery's .get() method.
+    var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+    var pieChart = new Chart(pieChartCanvas);
+    var PieData = [
+      {
+        value: 700,
+        color: "#f56954",
+        highlight: "#f56954",
+        label: "Chrome"
+      },
+      {
+        value: 500,
+        color: "#00a65a",
+        highlight: "#00a65a",
+        label: "IE"
+      },
+      {
+        value: 400,
+        color: "#f39c12",
+        highlight: "#f39c12",
+        label: "FireFox"
+      },
+      {
+        value: 600,
+        color: "#00c0ef",
+        highlight: "#00c0ef",
+        label: "Safari"
+      },
+      {
+        value: 300,
+        color: "#3c8dbc",
+        highlight: "#3c8dbc",
+        label: "Opera"
+      },
+      {
+        value: 100,
+        color: "#d2d6de",
+        highlight: "#d2d6de",
+        label: "Navigator"
+      }
+    ];
+    var pieOptions = {
+      //Boolean - Whether we should show a stroke on each segment
+      segmentShowStroke: true,
+      //String - The colour of each segment stroke
+      segmentStrokeColor: "#fff",
+      //Number - The width of each segment stroke
+      segmentStrokeWidth: 2,
+      //Number - The percentage of the chart that we cut out of the middle
+      percentageInnerCutout: 50, // This is 0 for Pie charts
+      //Number - Amount of animation steps
+      animationSteps: 100,
+      //String - Animation easing effect
+      animationEasing: "easeOutBounce",
+      //Boolean - Whether we animate the rotation of the Doughnut
+      animateRotate: true,
+      //Boolean - Whether we animate scaling the Doughnut from the centre
+      animateScale: false,
+      //Boolean - whether to make the chart responsive to window resizing
+      responsive: true,
+      // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+      maintainAspectRatio: true,
+      //String - A legend template
+     };
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+    pieChart.Doughnut(PieData, pieOptions);
   
   });
   </script>
@@ -151,5 +373,5 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-</body>
+
 </html>

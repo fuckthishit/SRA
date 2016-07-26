@@ -80,12 +80,44 @@ public class FarmersDB {
 
     }
 
+    public boolean checkUsernameAvailability(String username) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select username from farmers where username = ?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            boolean available = true;
+            if (rs.next()) {
+                available = false;
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return available;
+        } catch (SQLException ex) {
+            Logger.getLogger(FarmersDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
     public boolean addFarmer(String username) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into farmers(username) values (?)";
+            String query = "select username from farmers where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+           if (rs.next()){
+               rs.close();
+               pstmt.close();
+               conn.close();
+               return false;
+           }
+             query = "insert into farmers(username) values (?)";
+             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, username);
             int i = pstmt.executeUpdate();
             pstmt.close();
@@ -99,19 +131,19 @@ public class FarmersDB {
 
     public boolean editFarmer(Farmer newFarmer) {
         try {
+            System.out.println(newFarmer.getUsername());
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "update  farmers set username = ?, cell_num = ?, name = ?, gender = ?, education = ?, civil_status = ?, address = ?\n"
+            String query = "update  farmers set cell_num = ?, name = ?, gender = ?, education = ?, civil_status = ?, address = ?\n"
                     + "where username = ?";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, newFarmer.getUsername());
-            pstmt.setString(3, newFarmer.getUsername());
-            pstmt.setString(2, newFarmer.getCell_num());
-            pstmt.setInt(4, newFarmer.getGender());
-            pstmt.setInt(5, newFarmer.getEducation());
-            pstmt.setInt(6, newFarmer.getCivil_status());
-            pstmt.setString(7, newFarmer.getAddress());
-            pstmt.setString(8, newFarmer.getUsername());
+            pstmt.setString(1, newFarmer.getCell_num());
+            pstmt.setString(2, newFarmer.getName());
+            pstmt.setInt(3, newFarmer.getGender());
+            pstmt.setInt(4, newFarmer.getEducation());
+            pstmt.setInt(5, newFarmer.getCivil_status());
+            pstmt.setString(6, newFarmer.getAddress());
+            pstmt.setString(7, newFarmer.getUsername());
             int i = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -146,8 +178,6 @@ public class FarmersDB {
         }
         return null;
     }
-    
-   
 
     public Farm getFarmDetails(String farm_name, Farmer owner) {
         try {
@@ -176,7 +206,7 @@ public class FarmersDB {
         return null;
     }
 
-   private List<LatLng> StringToBoundary(String boundary) {
+    private List<LatLng> StringToBoundary(String boundary) {
         if (boundary == null) {
             return new ArrayList<LatLng>();
         }
@@ -189,32 +219,36 @@ public class FarmersDB {
         }
         return points;
     }
-   
-    private double getLatCenter(List<LatLng> boundary){
+
+    private double getLatCenter(List<LatLng> boundary) {
         double x1 = boundary.get(0).getLat();
         double x2 = boundary.get(0).getLat();
-        
-        for (int i = 1; i < boundary.size(); i++){
-            if (boundary.get(i).getLat()< x1)
+
+        for (int i = 1; i < boundary.size(); i++) {
+            if (boundary.get(i).getLat() < x1) {
                 x1 = boundary.get(i).getLat();
-            else if (boundary.get(i).getLat() > x2)
+            } else if (boundary.get(i).getLat() > x2) {
                 x2 = boundary.get(i).getLat();
+            }
         }
-        return  x1 + ((x2 - x1) / 2);
+        return x1 + ((x2 - x1) / 2);
     }
-    private double getLngCenter(List<LatLng> boundary){
+
+    private double getLngCenter(List<LatLng> boundary) {
         double y1 = boundary.get(0).getLng();
         double y2 = boundary.get(0).getLng();
-        
-        for (int i = 1; i < boundary.size(); i++){
-            if (boundary.get(i).getLng() < y1)
+
+        for (int i = 1; i < boundary.size(); i++) {
+            if (boundary.get(i).getLng() < y1) {
                 y1 = boundary.get(i).getLng();
-            else if (boundary.get(i).getLng() > y2)
+            } else if (boundary.get(i).getLng() > y2) {
                 y2 = boundary.get(i).getLng();
+            }
         }
         return y1 + ((y2 - y1) / 2);
     }
-public Farmer getSpecificFarmerDetails(String Farmname){
+
+    public Farmer getSpecificFarmerDetails(String Farmname) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
@@ -236,9 +270,10 @@ public Farmer getSpecificFarmerDetails(String Farmname){
                     farmer.setArea_harveted(rs.getDouble("area_harvested"));
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
+                  //  farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                    // farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
-                  
+
                 } while (rs.next());
             }
             rs.close();
@@ -250,9 +285,9 @@ public Farmer getSpecificFarmerDetails(String Farmname){
         }
         return null;
     }
-    
-    public ArrayList<Farmer> getFarmersDetails(){
-           try {
+
+    public ArrayList<Farmer> getFarmersDetails() {
+        try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
             String query = "SELECT * from farmers fs join farms f on fs.username = f.owner join production p on f.owner = p.owner ";
