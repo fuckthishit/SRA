@@ -271,6 +271,7 @@ public class FarmersDB {
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
                   //  farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
+                   // farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
 
                 } while (rs.next());
@@ -308,7 +309,7 @@ public class FarmersDB {
                     farmer.setArea_harveted(rs.getDouble("area_harvested"));
                     farmer.setLkg(rs.getDouble("lkg"));
                     farmer.setTons_cane(rs.getDouble("tons_cane"));
-                    //farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
+                   // farmer.setSugarcane_variety(rs.getString("sugarcane_variety"));
                     farmer.setFarm_name(rs.getString("farm_name"));
                     farmers.add(farmer);
                 } while (rs.next());
