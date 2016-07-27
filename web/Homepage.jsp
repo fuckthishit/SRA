@@ -125,10 +125,10 @@ desired effect
 	   <br/>
            
            <div class="col-md-6">
-          <!-- DONUT CHART -->
+          <!-- DONUT CHART () -->
           <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Donut Chart</h3>
+              <h3 class="box-title">Donut Chart (Production dissemination by barangay)</h3>
 
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" type="button" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -311,7 +311,7 @@ desired effect
     var pieChart = new Chart(pieChartCanvas);
     var PieData = [
       {
-        value: 700,
+        value: 600,
         color: "#f56954",
         highlight: "#f56954",
         label: "Chrome"
