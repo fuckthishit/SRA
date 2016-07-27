@@ -106,8 +106,9 @@ desired effect
 	  
 	 
 	  
-   <br>
+  
    <div class="col-md-5">
+       <br>
           <!-- LINE CHART -->
           <div class="box box-success">
             <div class="box-header with-border">
@@ -126,6 +127,7 @@ desired effect
           <!-- /.box -->
 </div>
 <div class="col-md-5">
+    <br>
           <!-- LINE CHART -->
           <div class="box box-success">
             <div class="box-header with-border">
