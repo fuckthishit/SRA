@@ -27,6 +27,8 @@ public class RecommendationDB {
             Connection conn = myFactory.getConnection();
             String query = "SELECT * FROM recommendations WHERE owner = ? ";
             PreparedStatement pstmt = conn.prepareStatement(query);
+           //todo forced coded the username because bryll is stupid
+          
             pstmt.setString(1, username);
             ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
