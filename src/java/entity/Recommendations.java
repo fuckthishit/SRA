@@ -5,7 +5,7 @@
  */
 package entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -16,11 +16,11 @@ public class Recommendations {
     private String farm_name;
     private String recommendation;
     private String status;
-      private String description;
+  
       private Date date_created;
-     private String remarks;
+     
     private String created_by;
-    private Date date_created;
+   
 
     /**
      * @return the owner
