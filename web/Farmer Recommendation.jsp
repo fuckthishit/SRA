@@ -157,6 +157,7 @@ desired effect
 	  </div>
 	   
 	  </div>
+          </div>  
 	  <br/>
           <br/>
 	  <div class="box box-solid details" id="FarmDetails">
@@ -243,7 +244,7 @@ desired effect
 	  
 	  
 	  
-	  </div>       
+	       
 	  </div>
 	  
 	  

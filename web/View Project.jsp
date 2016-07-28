@@ -79,6 +79,7 @@ desired effect
       <% Projects project = (Projects) session.getAttribute("project"); 
       if (project!=null){
       %>
+      <div class="col-md-9">
 	  <div class="box">
               <div class="box-header">
                   <h3># <%= project.getProject_num() + " " + project.getName() %></h3>
@@ -101,21 +102,23 @@ desired effect
               <% } %>
               </div>
 	  <div class="box-body">
-              <strong>Description</strong>
-              <p><%= project.getDescription() %></p>
+              <strong>Description : </strong>
+              
+              <p><b><%= project.getDescription() %></b></p>
               <hr>
+              
               <div class="row">
-                  <div class="col-md-6"><strong>Date Created</strong><%= " "+ project.getDate_created() %></div>
-                  <div class="col-md-6"><strong>Created By</strong><%= " "+ project.getCreated_by() %></div>
+                  <div class="col-md-3"><strong>Date Created : </strong><b><%= " "+ project.getDate_created() %></b></div>
+                  <div class="col-md-3"><strong>Created By : </strong><b><%= " "+ project.getCreated_by() %></b></div>
               </div>
               <hr>
               <div class="row">
-                  <div class="col-md-6"><strong>Starting Date</strong><%= " "+ project.getDate_initial() %></div>
-                  <div class="col-md-6"><strong>Ending Date</strong><%= " "+ project.getDate_end() %></div>
+                  <div class="col-md-3"><strong>Starting Date : </strong><b><%= " "+ project.getDate_initial() %></b></div>
+                  <div class="col-md-3"><strong>Ending Date : </strong><b><%= " "+ project.getDate_end() %></b></div>
               </div>
           </div>
           </div>
-	  <div>
+              
 	  </div>
 	  
 	  

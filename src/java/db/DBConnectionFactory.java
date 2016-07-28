@@ -13,7 +13,7 @@ import java.sql.Connection;
 public abstract class DBConnectionFactory {
         String url = "jdbc:mysql://localhost/SRA";
         String username="root";
-        String password="Jartan.Tupjar1";
+        String password="";
 
     public static DBConnectionFactory getInstance(){
         return new DBConnectionFactoryImpl();
