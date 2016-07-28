@@ -16,11 +16,10 @@ public class Recommendations {
     private String farm_name;
     private String recommendation;
     private String status;
-      private String description;
       private Date date_created;
-     private String remarks;
     private String created_by;
-    private Date date_created;
+    private Integer id;
+    private String type;
 
     /**
      * @return the owner
@@ -132,6 +131,34 @@ public class Recommendations {
      */
     public void setDate_created(Date date_created) {
         this.date_created = date_created;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
     }
     
 }
