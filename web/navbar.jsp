@@ -87,7 +87,7 @@
         <li><a href="Update Variables.jsp"><span>Update Variables</span> </a></li>
         <li><a href="Comparison.jsp"><span>Comparison</span> </a></li>
         <li><a href="Solutions.jsp"><span>Solutions</span> </a></li>
-        <li><a href="Thresholds.jsp"><span>Thresholds</span> </a></li>
+        <li><a href="ViewThresholds"><span>Thresholds</span> </a></li>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

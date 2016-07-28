@@ -1,4 +1,6 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.Problems"%>
 <%@include file="security.jsp" %>
 
 <!DOCTYPE html>
@@ -86,8 +88,8 @@ desired effect
             </div>
             <div class="box-body">
         
-              <a class="btn btn-app" >
-                <i class="fa fa-plus"></i> ADD</a>
+              <a class="btn  btn-app  col-md-10"data-toggle="modal" data-target="#myModal" >
+                <i class="fa fa-plus"></i> ADD NEW PROBLEM</a>
            
             </div>
             <!-- /.box-body -->
@@ -97,176 +99,166 @@ desired effect
 	
 	 
 	 
+<% 
+ 
+ ArrayList<String>threshold=(ArrayList<String>) session.getAttribute("thresholds");
+  ArrayList<Problems> problems = (ArrayList<Problems>) session.getAttribute("problems"); 
+  System.out.println(problems.get(0).getName());
+if(threshold!=null && problems !=null){
+   
+      
+    for(int i=0;i<threshold.size();i++){
+        %>
+        <div class="col-md-12">
+            
+          <!-- LINE CHART -->
+          <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">Threshold <b> < </b></h3><input type="text" name="" class="" placeholder="<%=threshold.get(i) %> "style="width: 50px;">
 
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+        <div class="box-body">
+  <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>ID</th>  
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                </tr>
+        
+        <%
+        for(int b=0;b<problems.size();b++){
+       if(threshold.get(i).equals(problems.get(b).getYield()))  {
+             
+             %>
+             <tr>         
+                 <td><%=problems.get(b).getProblemId()%></td>
+                 <td><a href="ViewProblem?id=<%= problems.get(b).getProblemId()%>"><%=problems.get(b).getName()%></a></td>
+                  <td><%=problems.get(b).getDescription() %></td>
+                  
+                  <% 
+              if (problems.get(b).getStatus().equals("A")){
+              %>
+            <td>  <span class="label label-success">Approved</span></td>
+              <% } 
+              else if (problems.get(b).getStatus().equals("P")){
+              %>
+               <td>  <span class="label label-warning">Pending</span></td>
+             
+              <% } 
+               else if (problems.get(b).getStatus().equals("O")){
+              %>
+               <td>  <span class="label label-primary">On Going</span></td>
+                <% }
+              else {
+              %>
+               <td>  <span class="label label-danger">Denied</span></td>
+               
+              <% } %>
+              
+                     
+                </tr>
+             
+             
+             
+        <%    
+         }
+       
+     
+       
+        }
+        %>
+        
+            </tbody>
+		  </table>
+			  <div class="box-footer clearfix">
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right"  >Place New Problem</a>
+			  </div>
+            </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <br>
+			</div>    
+              
+              
+              
+              <%
+        
+    }
+    
+    
+}
+
+      %>
   
 	
           <!-- /.box -->
 
           <!-- BAR CHART -->
         
-	 <div class="col-md-12">
-          <!-- LINE CHART -->
-          <div class="box box-warning">
-            <div class="box-header with-border">
-              <h3 class="box-title">Threshold <b><</b></h3><input type="text" name="" class="" placeholder="1.3"style="width: 50px;">
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-  <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>Problem</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                <tr>          
-                  <td>John Doe</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                <td>Alexander Pierce</td>
-                <td><span class="label label-warning">Pending</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>Bob Doe</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>Mike Doe</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-              </tbody>
-			  
-			  
-			  </table>
-			  <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Place New Problem</a>
-			  </div>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-			</div>
+	 
           <!-- BAR CHART -->
-		<div class="col-md-12">
-          <!-- LINE CHART -->
-          <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Threshold<b><</b></h3><input type="text" name="" class="" placeholder="3.0"style="width: 50px;">
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-            <div class="box-body">
-  <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>Problem</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                <tr>          
-                  <td>John Doe</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                <td>Alexander Pierce</td>
-                <td><span class="label label-warning">Pending</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>Bob Doe</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>Mike Doe</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-              </tbody>
-			  
-			  
-			  </table>
-			  <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Place New Problem</a>
-			  </div>
-            </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-			</div>
+		
 			
 			
-			<div class="col-md-12">
-          <!-- LINE CHART -->
-          <div class="box box-danger">
-            <div class="box-header with-border">
-              <h3 class="box-title">Threshold<b><</b></h3><input type="text" name="" class="" placeholder="2.3"style="width: 50px;">
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+			
+          
+    </div> 
+      
+      <div class="row">
+	 
+	  <div class="col-md-3">
+	  
+	  
+	  <div class="modal modal-primary fade" id="myModal" >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">New Problem</h4>
               </div>
+                <form action="CreateNewProblem">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label>Problem</label>
+                  <input type="text" name="name" class="form-control">
+				  
+                </div>
+                  <div class="form-group">
+                  <label>Yield</label>
+                  <input type="number" step="any" min="0.1" name="yield" class="form-control">
+				  
+                </div>
+				<div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline" value="Create">Create</button>
+              </div>
+                     </form>
             </div>
-            <div class="box-body">
-  <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tbody><tr>
-                  <th>Problem</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                <tr>          
-                  <td>John Doe</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                <td>Alexander Pierce</td>
-                <td><span class="label label-warning">Pending</span></td>
-                <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>Bob Doe</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>Mike Doe</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-              </tbody>
-			  
-			  
-			  </table>
-			  <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Place New Problem</a>
-			  </div>
-            </div>
-            </div>
-            <!-- /.box-body -->
+            <!-- /.modal-content -->
           </div>
-          <!-- /.box -->
-			</div>
-    </div>     
+          <!-- /.modal-dialog -->
+        </div>
+	  </div>
+	  
+		
+		
+	
+	  </div>
     </section>
 
 		  </div>

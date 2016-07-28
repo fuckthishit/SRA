@@ -1,4 +1,7 @@
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="entity.Projects"%>
+<%@page import="entity.Problems"%>
 <%@include file="security.jsp"%>
 
 <!DOCTYPE html>
@@ -67,7 +70,7 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Solutions
+        Solutions (ADD SECTION THAT SHOWS FARMER/FARMS LIST THAT ENCOUNTER THE PROBLEM?)
         <small>Pampanga Mill District</small> 
       </h1>
    
@@ -89,19 +92,70 @@ desired effect
 	 
 	  
    <br>
+   <%
+   Problems problem=(Problems) session.getAttribute("problem");
+   if(problem!=null){
+       %>
+   
    <div class="col-md-6">
+       <br>
           <!-- LINE CHART -->
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">Problem Description (ADD SECTION THAT SHOWS FARMER/FARMS LIST THAT ENCOUNTER THE PROBLEM?)</h3>
+                <h3 class="box-title"> <b/>Problem: <%=problem.getName() %></b> </h3>
     </div>
             <div class="box-body">
-            Blah blah blah blah blah blah
+          <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tbody><tr>
+                  <th>Status</th>
+                  <th>Yield</th>    
+                  <th>Description</th>
+                </tr>
+                <tr>
+                    <% 
+              if (problem.getStatus().equals("A")){
+              %>
+            <td>  <span class="label label-success">Approved</span></td>
+              <% } 
+              else if (problem.getStatus().equals("P")){
+              %>
+               <td>  <span class="label label-warning">Pending</span></td>
+             
+              <% } 
+               else if (problem.getStatus().equals("O")){
+              %>
+               <td>  <span class="label label-primary">On Going</span></td>
+                <% }
+              else {
+              %>
+               <td>  <span class="label label-danger">Denied</span></td>
+               
+              <% } %>
+                    <td> <%=problem.getYield() %></td>
+                    <td> <%=problem.getDescription() %></td>
+			
+                </tr>
+               
+              </tbody></table>
+            </div>
+           
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
 </div>
+   
+   
+   
+   
+   
+   <%
+       
+   }
+   
+   %>
+   
 	<div class="col-md-12">
           <!-- LINE CHART -->
           <div class="box box-info">
@@ -115,24 +169,61 @@ desired effect
               </div>
             </div>
             <div class="box-body">
+                
              <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
+                  
                 <tbody><tr>
+                         <th>ID</th>
                   <th>Name</th>
                   <th>Status</th>
-				  <th>Reason</th>
+				  <th>Description</th>
 				  <th>Edit button</th>
 				  <th>remove button</th>
                  
                 </tr>
-                <tr>
-                  <td href="" >John Doe</td>
-                  
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                <%
+   ArrayList<Projects> accProj=(ArrayList<Projects>) session.getAttribute("acceptedProjects");
+   if(accProj!=null){
+       for(int c=0; c<accProj.size();c++){
+           
+       %>
+                
+           <tr>
+                  <td><%=accProj.get(c).getProject_num() %></td>
+                  <td><a href="ViewProject?id=<%= accProj.get(c).getProject_num()%>"><%=accProj.get(c).getName() %></a></td>
+                   <% 
+              if (problem.getStatus().equals("A")){
+              %>
+            <td>  <span class="label label-success">Approved</span></td>
+              <% } 
+              else if (problem.getStatus().equals("P")){
+              %>
+               <td>  <span class="label label-warning">Pending</span></td>
+             
+              <% } 
+               else if (problem.getStatus().equals("O")){
+              %>
+               <td>  <span class="label label-primary">On Going</span></td>
+                <% }
+              else {
+              %>
+               <td>  <span class="label label-danger">Denied</span></td>
+               
+              <% } %>
+                  <td><%=accProj.get(c).getDescription() %></td>
 				  <th>Edit</th>
 				  <td>remove</td>
-                </tr>
+                </tr>     
+                
+                
+                
+                
+                <%
+       }
+   }
+       %>
+                
                
               </tbody></table>
             </div>
@@ -141,8 +232,10 @@ desired effect
           </div>
 		  </div>
           <!-- /.box -->
-	<div class="col-md-12">
+	
+          <div class="col-md-12">
           <!-- LINE CHART -->
+          
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Practices, Plans and Programs</h3>
@@ -157,44 +250,67 @@ desired effect
              <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tbody><tr>
+                        <th>ID</th>
                   <th>Name</th>
                   <th>Status</th>
-				  <th>Reason</th>
+				  <th>Description</th>
 				   <th>Edit button</th>
 				  <th>Add button</th>
                  
                 </tr>
-                <tr>
-                  <td href="" >John Doe</td>
+                    <%
+   ArrayList<Projects> allProj=(ArrayList<Projects>) session.getAttribute("allProjects");
+   if(allProj!=null){
+       
+    
+       for(int d=0; d<allProj.size();d++){
+        
+                   
+           
+       %>
+            <tr>
+                <td><a href=""><%=allProj.get(d).getProject_num()%></a></td>
+                  <td><a href="ViewProject?id=<%=allProj.get(d).getProject_num()%>"><%=allProj.get(d).getName()%></a></td>
                   
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                  
+                       <% 
+              if (problem.getStatus().equals("A")){
+              %>
+            <td>  <span class="label label-success">Approved</span></td>
+              <% } 
+              else if (problem.getStatus().equals("P")){
+              %>
+               <td>  <span class="label label-warning">Pending</span></td>
+             
+              <% } 
+               else if (problem.getStatus().equals("O")){
+              %>
+               <td>  <span class="label label-primary">On Going</span></td>
+                <% }
+              else {
+              %>
+               <td>  <span class="label label-danger">Denied</span></td>
+               
+              <% } %>
+              
+              <td><%=allProj.get(d).getDescription()%></td>
 				   <th>Edit</th>
 				  <td>Addbtn</td>
                 </tr>
-                <tr>
-               
-                  <td href="" >Alexander Pierce</td>
-					<td><span class="label label-warning">Pending</span></td>
-                   <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				    <th>Edit</th>
-				   <td>Addbtn</td>
-                </tr>
-                <tr>
-                  
-                  <td href="threshold.html" >Bob Doe</td>
-                  <td><span class="label label-primary">Approved</span></td>
-				  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-                 <td>Addbtn</td>
-                </tr>
-                <tr>
-                  <td href="" >Mike Doe</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-				    <td>Addbtn</td>
-                </tr>
+                
+          
+          
+          
+          <%
+       }
+       
+       }
+       
+       
+       
+   
+       %>
+                
               </tbody></table>
 			  <div class="box-footer clearfix">
               <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Create New Plans</a>

@@ -9,7 +9,7 @@ package entity;
  *
  * @author Bryll Joey Delfin
  */
-public class Possible_Problems {
+public class Problems {
     private Integer ProblemId;
     private String name, description, Yield, status;
 

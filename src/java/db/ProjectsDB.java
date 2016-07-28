@@ -122,5 +122,38 @@ public class ProjectsDB {
             return null;
         }
     }
-
+    public ArrayList<Projects> viewOtherProjects(int prob_id) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select p.project_num,p.name,p.description,p.status from sra.projects p where p.project_num not in (select ps.project_num from `projects-problems`ps where ps.ProblemId=? );";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setInt(1, prob_id);
+            ResultSet rs = pstmt.executeQuery();
+             ArrayList<Projects> projList=null;
+            if (rs.next()) {
+              projList=new ArrayList<Projects>();
+                 Projects project = null;
+                do{
+                    project = new Projects();
+                project.setProject_num(rs.getInt(1));
+                project.setName(rs.getString(2));
+                project.setDescription(rs.getString(3));
+                project.setStatus(rs.getString(4));
+                projList.add(project);
+                
+                
+                }
+                while(rs.next());
+                
+                }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return projList;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

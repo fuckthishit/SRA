@@ -68,6 +68,18 @@
         <servlet-name>AddBase</servlet-name>
         <servlet-class>controller.mobile.AddBase</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewThresholds</servlet-name>
+        <servlet-class>controller.ViewThresholds</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNewProblem</servlet-name>
+        <servlet-class>controller.CreateNewProblem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProblem</servlet-name>
+        <servlet-class>controller.ViewProblem</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -135,6 +147,18 @@
     <servlet-mapping>
         <servlet-name>AddBase</servlet-name>
         <url-pattern>/AddBase</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewThresholds</servlet-name>
+        <url-pattern>/ViewThresholds</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewProblem</servlet-name>
+        <url-pattern>/CreateNewProblem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProblem</servlet-name>
+        <url-pattern>/ViewProblem</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
