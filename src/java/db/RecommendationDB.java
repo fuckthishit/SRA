@@ -199,5 +199,42 @@ public class RecommendationDB {
             return null;
         }
     }
+     public boolean removeAcceptedPrograms(int probid,int id) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "DELETE FROM `sra`.`projects-problems` WHERE `project_num`=? and`ProblemId`=?;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+              pstmt.setInt(1, id);
+            pstmt.setInt(2, probid);
+            pstmt.executeUpdate();
+          
+            pstmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+     
+     public boolean addAccPrograms(int probid,int id) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "INSERT INTO `sra`.`projects-problems` (`project_num`, `ProblemId`) VALUES (?,?);";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+              pstmt.setInt(1, id);
+            pstmt.setInt(2, probid);
+            pstmt.executeUpdate();
+          
+            pstmt.close();
+            conn.close();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
     
 }

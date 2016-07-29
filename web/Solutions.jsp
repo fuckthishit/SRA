@@ -97,12 +97,13 @@ desired effect
    if(problem!=null){
        %>
    
-   <div class="col-md-6">
+   <div class="col-md-6 ">
        <br>
           <!-- LINE CHART -->
           <div class="box box-success">
-            <div class="box-header with-border">
-                <h3 class="box-title"> <b/>Problem: <%=problem.getName() %></b> </h3>
+            <div class="box-header with-border probiz">
+                <h3 class="box-title hidden" id="problemid"> <%=problem.getProblemId()%> </h3>
+                 <h3 class="box-title"> <b> <%=problem.getName() %></b> </h3>
     </div>
             <div class="box-body">
           <div class="box-body table-responsive no-padding">
@@ -170,15 +171,15 @@ desired effect
             </div>
             <div class="box-body">
                 
-             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+             <div class="box-body table-responsive no-padding" id="asol">
+              <table class="table table-hover" id="ASolTable">
                   
-                <tbody><tr>
+                  <tbody ><tr>
                          <th>ID</th>
                   <th>Name</th>
                   <th>Status</th>
 				  <th>Description</th>
-				  <th>Edit button</th>
+				 
 				  <th>remove button</th>
                  
                 </tr>
@@ -189,8 +190,8 @@ desired effect
            
        %>
                 
-           <tr>
-                  <td><%=accProj.get(c).getProject_num() %></td>
+       <tr class="pogiz">
+           <td  id="pogi"><%=accProj.get(c).getProject_num() %></td>
                   <td><a href="ViewProject?id=<%= accProj.get(c).getProject_num()%>"><%=accProj.get(c).getName() %></a></td>
                    <% 
               if (problem.getStatus().equals("A")){
@@ -212,8 +213,8 @@ desired effect
                
               <% } %>
                   <td><%=accProj.get(c).getDescription() %></td>
-				  <th>Edit</th>
-				  <td>remove</td>
+				 
+                  <td><input class="btn btn-danger btn-sm pull-left" readonly="" onclick="deleteRow(this,<%=accProj.get(c).getProject_num()%>)" value="Delete"></td>
                 </tr>     
                 
                 
@@ -236,7 +237,7 @@ desired effect
           <div class="col-md-12">
           <!-- LINE CHART -->
           
-          <div class="box box-info">
+          <div class="box box-info ">
             <div class="box-header with-border">
               <h3 class="box-title">Practices, Plans and Programs</h3>
 
@@ -247,15 +248,15 @@ desired effect
               </div>
             </div>
             <div class="box-body">
-             <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
+             <div class="box-body table-responsive no-padding acsol">
+              <table class="table table-hover" id="SolTable">
                 <tbody><tr>
                         <th>ID</th>
                   <th>Name</th>
                   <th>Status</th>
 				  <th>Description</th>
-				   <th>Edit button</th>
-				  <th>Add button</th>
+				  
+				  <th></th>
                  
                 </tr>
                     <%
@@ -265,9 +266,7 @@ desired effect
     
        for(int d=0; d<allProj.size();d++){
         
-                   
-           
-       %>
+        %>
             <tr>
                 <td><a href=""><%=allProj.get(d).getProject_num()%></a></td>
                   <td><a href="ViewProject?id=<%=allProj.get(d).getProject_num()%>"><%=allProj.get(d).getName()%></a></td>
@@ -294,8 +293,9 @@ desired effect
               <% } %>
               
               <td><%=allProj.get(d).getDescription()%></td>
-				   <th>Edit</th>
-				  <td>Addbtn</td>
+				
+              <td><input class="btn btn-success btn-sm" readonly="" onclick="deleteOtherRow(this,<%=allProj.get(d).getProject_num()%>)" value="Add"></td>
+              
                 </tr>
                 
           
@@ -313,7 +313,7 @@ desired effect
                 
               </tbody></table>
 			  <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Create New Plans</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat">Create New Plans</a>
 			  </div>
             </div>
             </div>
@@ -434,119 +434,40 @@ desired effect
 <script src="plugins/chartjs/Chart.min.js"></script>
 
 
-
 <script>
-  $(function () {
-  
-  
-  
+    
+    function deleteRow(row,value)
+{
+    var i=row.parentNode.parentNode.rowIndex;
+       
+      var idprob = $(".probiz").find("#problemid").text();
+      
+       $.getJSON('ViewAcceptedSolution',{"rowid":value, "probid":idprob   
+            
+        });
+    document.getElementById('ASolTable').deleteRow(i);
+     window.location.reload();
+}
+
+</script>
+<script>
+    
+    function deleteOtherRow(row,value)
+{
+    var i=row.parentNode.parentNode.rowIndex;
+       
+      var idprob = $(".probiz").find("#problemid").text();
+      
+       $.getJSON('ViewAllSolution',{"rowid":value, "probid":idprob
+         
+        });
+        document.getElementById('SolTable').deleteRow(i);
+      window.location.reload();
+    
+}
  
-    //-------------
-    //- LINE CHART -
-    //--------------
-   
-  
-  var lineChartData = {
-      labels: ["January", "February", "March", "April", "May", "June", "July","August", " September","October","November","December"],
-      datasets: [
-        {
-          label: "Electronics",
-          fillColor: "rgba(255,0,0,0.4)",
-          strokeColor: "rgba(255,0,0,0.4)",
-          pointColor: "rgba(255,0,0,0.7)",
-          pointStrokeColor: "#c1c7d1",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(220,220,220,1)",
-          data: [65, 59, 80, 81, 56, 55, 40 ,30, 30, 20, 10, 42]
-        },
-        {
-          label: "Manual",
-          fillColor: "rgba(0, 255, 0, 0.5)",
-          strokeColor: "rgba(0, 255, 0, 0.5)",
-          pointColor: "rgba(0, 255, 0, 0.5)",
-          pointStrokeColor: "rgba(0, 255, 0, 1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(0, 255, 0, 1)",
-          data: [16, 23, 19, 40, 64, 82, 56, 14, 73, 12, 34,46]
-        },
-		  {
-          label: "Digital Goods",
-          fillColor: "rgba(60,141,188,0.9)",
-          strokeColor: "rgba(60,141,188,0.8)",
-          pointColor: "#3b8bba",
-          pointStrokeColor: "rgba(60,141,188,1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [28, 48, 40, 19, 86, 27, 90, 81, 56, 55, 40,30]
-        }
-      ]
-    };
-	var lineChartData1 = {
-      labels: ["January", "February", "March", "April", "May", "June", "July","August", " September","October","November","December"],
-      datasets: [
- 
-        {
-          label: "Digital Goods",
-          fillColor: "rgba(60,141,188,0.9)",
-          strokeColor: "rgba(60,141,188,0.8)",
-          pointColor: "#3b8bba",
-          pointStrokeColor: "rgba(60,141,188,1)",
-          pointHighlightFill: "#fff",
-          pointHighlightStroke: "rgba(60,141,188,1)",
-          data: [28, 48, 40, 19, 86, 27, 90]
-        }
-      ]
-    };
-  var lineChartOptions = {
-      //Boolean - If we should show the scale at all
-      showScale: true,
-      //Boolean - Whether grid lines are shown across the chart
-      scaleShowGridLines: false,
-      //String - Colour of the grid lines
-      scaleGridLineColor: "rgba(0,0,0,.05)",
-      //Number - Width of the grid lines
-      scaleGridLineWidth: 1,
-      //Boolean - Whether to show horizontal lines (except X axis)
-      scaleShowHorizontalLines: true,
-      //Boolean - Whether to show vertical lines (except Y axis)
-      scaleShowVerticalLines: true,
-      //Boolean - Whether the line is curved between points
-      bezierCurve: true,
-      //Number - Tension of the bezier curve between points
-      bezierCurveTension: 0.3,
-      //Boolean - Whether to show a dot for each point
-      pointDot: false,
-      //Number - Radius of each point dot in pixels
-      pointDotRadius: 4,
-      //Number - Pixel width of point dot stroke
-      pointDotStrokeWidth: 1,
-      //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-      pointHitDetectionRadius: 20,
-      //Boolean - Whether to show a stroke for datasets
-      datasetStroke: true,
-      //Number - Pixel width of dataset stroke
-      datasetStrokeWidth: 2,
-      //Boolean - Whether to fill the dataset with a color
-      datasetFill: true,
-      //String - A legend template
-      //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-      maintainAspectRatio: true,
-      //Boolean - whether to make the chart responsive to window resizing
-      responsive: true
-    };
-   var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas);
-    var lineChartOptions = lineChartOptions;
-    lineChartOptions.datasetFill = false;
-    lineChart.Line(lineChartData1, lineChartOptions);
-	
-	var lineChartCanvas = $("#lineChart1").get(0).getContext("2d");
-    var lineChart = new Chart(lineChartCanvas);
-    var lineChartOptions = lineChartOptions;
-    lineChartOptions.datasetFill = false;
-    lineChart.Line(lineChartData, lineChartOptions);
- });
-  </script>
+</script>
+
 
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

@@ -80,6 +80,14 @@
         <servlet-name>ViewProblem</servlet-name>
         <servlet-class>controller.ViewProblem</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAcceptedSolution</servlet-name>
+        <servlet-class>controller.ViewAcceptedSolution</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAllSolution</servlet-name>
+        <servlet-class>ViewAllSolution</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -159,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>ViewProblem</servlet-name>
         <url-pattern>/ViewProblem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAcceptedSolution</servlet-name>
+        <url-pattern>/ViewAcceptedSolution</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllSolution</servlet-name>
+        <url-pattern>/ViewAllSolution</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
