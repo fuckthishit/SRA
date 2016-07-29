@@ -451,6 +451,7 @@ desired effect
     
  });
   </script>
+  
 <!-- Bootstrap 3.3.6 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->

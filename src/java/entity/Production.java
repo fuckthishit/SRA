@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entity;
+package entity;
 
 import java.util.Date;
 
@@ -19,6 +19,9 @@ public class Production {
     private Double tons_cane;
     private Double lkg;
     private Date date;
+    private Integer id;
+    private String barangay;
+    private Double total_lkg;
 
     /**
      * @return the owner
@@ -116,5 +119,47 @@ public class Production {
      */
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * @return the id
+     */
+    public Integer getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the barangay
+     */
+    public String getBarangay() {
+        return barangay;
+    }
+
+    /**
+     * @param barangay the barangay to set
+     */
+    public void setBarangay(String barangay) {
+        this.barangay = barangay;
+    }
+
+    /**
+     * @return the total_lkg
+     */
+    public Double getTotal_lkg() {
+        return total_lkg;
+    }
+
+    /**
+     * @param total_lkg the total_lkg to set
+     */
+    public void setTotal_lkg(Double total_lkg) {
+        this.total_lkg = total_lkg;
     }
 }

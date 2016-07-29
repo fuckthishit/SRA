@@ -1,4 +1,8 @@
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="db.ProductionDB"%>
 <%@include file="security.jsp" %>
+<%@page import="entity.Production"%>
 
 <!DOCTYPE html>
 <!--
@@ -281,6 +285,7 @@ desired effect
 <script src="dist/js/app.min.js"></script>
 
 <script src="plugins/chartjs/Chart.min.js"></script>
+
 <script>
   $(function () {
   var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
@@ -309,43 +314,22 @@ desired effect
     // Get context with jQuery - using jQuery's .get() method.
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     var pieChart = new Chart(pieChartCanvas);
+    var randomColor = "#f0000f".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
     var PieData = [
-      {
-        value: 600,
-        color: "#f56954",
-        highlight: "#f56954",
-        label: "Chrome"
-      },
-      {
-        value: 500,
-        color: "#00a65a",
-        highlight: "#00a65a",
-        label: "IE"
-      },
-      {
-        value: 400,
-        color: "#f39c12",
-        highlight: "#f39c12",
-        label: "FireFox"
-      },
-      {
-        value: 600,
-        color: "#00c0ef",
-        highlight: "#00c0ef",
-        label: "Safari"
-      },
-      {
-        value: 300,
-        color: "#3c8dbc",
-        highlight: "#3c8dbc",
-        label: "Opera"
-      },
-      {
-        value: 100,
-        color: "#d2d6de",
-        highlight: "#d2d6de",
-        label: "Navigator"
-      }
+        <% Production p = new Production(); 
+       ProductionDB pdb = new ProductionDB(); 
+       ArrayList<Production> productions = pdb.getProductionbyBarangay(); 
+        for(int i = 0; i < productions.size() ; i++){%>
+
+       {                                      
+        value: <%= productions.get(i).getLkg() %>,
+        color: randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);}) ,
+        highlight: randomColor ,
+        label: "<%= productions.get(i).getBarangay() %>"
+      } 
+  <% if(i < productions.size()-1){  %>
+        ,
+    <% } } %>
     ];
     var pieOptions = {
       //Boolean - Whether we should show a stroke on each segment
@@ -355,7 +339,7 @@ desired effect
       //Number - The width of each segment stroke
       segmentStrokeWidth: 2,
       //Number - The percentage of the chart that we cut out of the middle
-      percentageInnerCutout: 50, // This is 0 for Pie charts
+      percentageInnerCutout: 50,    // This is 0 for Pie charts
       //Number - Amount of animation steps
       animationSteps: 100,
       //String - Animation easing effect

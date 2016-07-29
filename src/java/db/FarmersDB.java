@@ -290,7 +290,7 @@ public class FarmersDB {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "SELECT * from farmers fs join farms f on fs.username = f.owner join production p on f.owner = p.owner ";
+            String query = "SELECT * from farmers fs join farms f on fs.username = f.owner join production p on f.owner = p.owner group by f.farm_name ";
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             ArrayList<Farmer> farmers = null;
