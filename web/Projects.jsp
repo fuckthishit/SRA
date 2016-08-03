@@ -80,7 +80,7 @@ desired effect
       <!-- Your Page Content Here -->
 	  <div class="row">
 	  <div class="col-md-2">
-	  <button class="btn btn-sm btn-info btn-flat pull-left" data-toggle="modal" data-target="#myModal">New Project</button>
+	  <a href="CreateNewProject.jsp"><button class="btn btn-sm btn-info btn-flat pull-left">New Project</button></a>
 	  </div>
 	  <div class="col-md-1"><label>Barangay</label></div><div class="col-md-4"><select class="form-control"><option>Aklan</option></select></div>
 	  </div>

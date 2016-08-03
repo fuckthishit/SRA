@@ -165,11 +165,46 @@ public class RecommendationDB {
         }
         
     }
+      public ArrayList<Problems> viewProblemList() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select * from `possible problems`";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+         
+            ResultSet rs = pstmt.executeQuery();
+            ArrayList<Problems> list=null;
+             Problems problem = null;
+            if (rs.next()) {
+                list=new ArrayList<Problems>();
+                
+               do{
+                 problem = new Problems();
+                problem.setProblemId(rs.getInt(1));
+                problem.setName(rs.getString(2));
+                problem.setDescription(rs.getString(3));
+               problem.setYield(rs.getString(4));
+                problem.setStatus(rs.getString(5));  
+                list.add(problem);
+               }while(rs.next());
+                
+                
+            }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return list;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
     public ArrayList<Projects> viewAcceptedProject(int prob_id) {
         try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "select p.project_num, p.name,p.description,p.status from Projects p join sra.`projects-problems` pp on p.project_num = pp.project_num join `possible problems` psp on pp.ProblemId=psp.ProblemId where psp.ProblemId=? and psp.status='A'";
+            String query = "select p.project_num, p.name,p.description,p.status from Projects p join sra.`projects-problems` pp on p.project_num = pp.project_num join `possible problems` psp on pp.ProblemId=psp.ProblemId where psp.ProblemId=?";
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setInt(1, prob_id);
             ResultSet rs = pstmt.executeQuery();

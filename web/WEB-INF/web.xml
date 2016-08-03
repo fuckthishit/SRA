@@ -86,7 +86,27 @@
     </servlet>
     <servlet>
         <servlet-name>ViewAllSolution</servlet-name>
-        <servlet-class>ViewAllSolution</servlet-class>
+        <servlet-class>controller.ViewAllSolution</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>reloadProblems</servlet-name>
+        <servlet-class>controller.reloadProblems</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFarmerDropdown</servlet-name>
+        <servlet-class>controller.ViewFarmerDropdown</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewFarmerDropdownCopy</servlet-name>
+        <servlet-class>ViewFarmerDropdownCopy</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNewProject</servlet-name>
+        <servlet-class>controller.CreateNewProject</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNewProjectTest</servlet-name>
+        <servlet-class>controller.CreateNewProjectTest</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -175,6 +195,26 @@
     <servlet-mapping>
         <servlet-name>ViewAllSolution</servlet-name>
         <url-pattern>/ViewAllSolution</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>reloadProblems</servlet-name>
+        <url-pattern>/reloadProblems</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFarmerDropdown</servlet-name>
+        <url-pattern>/ViewFarmerDropdown</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewFarmerDropdownCopy</servlet-name>
+        <url-pattern>/ViewFarmerDropdownCopy</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewProject</servlet-name>
+        <url-pattern>/CreateNewProject</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewProjectTest</servlet-name>
+        <url-pattern>/CreateNewProjectTest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

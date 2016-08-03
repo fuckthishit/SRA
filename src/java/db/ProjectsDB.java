@@ -1,6 +1,8 @@
 package db;
 
 import entity.Projects;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -9,6 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 public class ProjectsDB {
     
@@ -156,4 +160,198 @@ public class ProjectsDB {
             return null;
         }
     }
-}
+     public ArrayList<Projects> viewBrgyProjects(String brgy) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select p.project_num, p.name, p.description,p.status from projects p join projects_farms pf on p.project_num=pf.project_num join farms fs on fs.owner=pf.owner  where barangay=? group by p.project_num;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, brgy);
+           ResultSet rs = pstmt.executeQuery();
+             ArrayList<Projects> projList=null;
+            if (rs.next()) {
+              projList=new ArrayList<Projects>();
+                 Projects project = null;
+                do{
+                    project = new Projects();
+                project.setProject_num(rs.getInt(1));
+                project.setName(rs.getString(2));
+                project.setDescription(rs.getString(3));
+                project.setStatus(rs.getString(4));
+                projList.add(project);
+                
+                
+                }
+                while(rs.next());
+                
+                }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return projList;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+     }    public ArrayList<Projects> viewFarmerProjects(String farmer) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select p.project_num, p.name, p.description,p.status from projects p join projects_farms pf on p.project_num=pf.project_num join farms fs on fs.owner=pf.owner  where fs.owner=? group by p.project_num;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, farmer);
+           ResultSet rs = pstmt.executeQuery();
+             ArrayList<Projects> projList=null;
+            if (rs.next()) {
+              projList=new ArrayList<Projects>();
+                 Projects project = null;
+                do{
+                    project = new Projects();
+                project.setProject_num(rs.getInt(1));
+                project.setName(rs.getString(2));
+                project.setDescription(rs.getString(3));
+                project.setStatus(rs.getString(4));
+                projList.add(project);
+                
+                
+                }
+                while(rs.next());
+                
+                }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return projList;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+     }
+    public ArrayList<Projects> viewfarmProjects(String farmername) {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select p.project_num, p.name, p.description,p.status from projects p join projects_farms pf on p.project_num=pf.project_num where pf.farm_name=?;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, farmername);
+           ResultSet rs = pstmt.executeQuery();
+             ArrayList<Projects> projList=null;
+            if (rs.next()) {
+              projList=new ArrayList<Projects>();
+                 Projects project = null;
+                do{
+                    project = new Projects();
+                project.setProject_num(rs.getInt(1));
+                project.setName(rs.getString(2));
+                project.setDescription(rs.getString(3));
+                project.setStatus(rs.getString(4));
+                projList.add(project);
+                
+                
+                }
+                while(rs.next());
+                
+                }
+            rs.close();
+            pstmt.close();
+            conn.close();
+            return projList;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    public boolean  createdNewTable() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select f.farm_name,f.owner,f.barangay from farms f;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+          
+            ResultSet rs = pstmt.executeQuery();
+                JSONArray list= new JSONArray(); 
+            if (rs.next()) {
+              
+                
+                JSONObject obj;
+              
+                do{
+                    obj=new JSONObject();
+                obj.put("farm_name",rs.getString(1));
+               obj.put("owner",rs.getString(2));
+                obj.put("barangay",rs.getString(3));
+                list.add(obj);
+                
+                
+                }
+                while(rs.next());
+                
+                }
+                rs.close();
+            pstmt.close();
+            conn.close();
+            
+            FileWriter file = new FileWriter("\\web\\JSON\\data.json");
+            file.write(list.toJSONString());
+            file.flush();
+            file.close();
+        
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (IOException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+     public String createdNewTableTest() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select f.farm_name,f.owner,f.barangay from farms f;";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+          
+            ResultSet rs = pstmt.executeQuery();
+            
+            JSONArray list;
+             list= new JSONArray(); 
+            if (rs.next()) {
+              
+                
+            
+              
+                do{
+                        
+                  ArrayList<String> obj = new ArrayList<String>();
+                obj.add(rs.getString(1));
+               obj.add(rs.getString(2));
+                obj.add(rs.getString(3));
+                list.add(obj);
+                
+                
+                }
+                while(rs.next());
+               
+            
+           
+                
+                }
+                rs.close();
+                pstmt.close();
+                conn.close();
+            return list.toJSONString();
+            
+          
+        
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(ProjectsDB.class.getName()).log(Level.SEVERE, null, ex);
+           return null;
+        } 
+        
+        }
+    }
+    
+    
+

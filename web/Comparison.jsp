@@ -1,11 +1,12 @@
 
+<%@page import="entity.Projects"%>
+<%@page import="entity.Farm"%>
+<%@page import="entity.Farmer"%>
+<%@page import="entity.Comparison"%>
+<%@page import="db.ComparisonDB"%>
+<%@page import="java.util.ArrayList"%>
 <%@include file="security.jsp" %>
 
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
 <html>
 <head>
   <meta charset="utf-8">
@@ -77,40 +78,218 @@ desired effect
     <section class="content">
 
       <!-- Your Page Content Here -->
+       <form  action="ViewFarmerDropdown">    
 	  <div class="row">
-	  <div class="col-md-2">
-	  
-	  </div>
-	  <div class="col-md-1"><label>Municipality</label></div><div class="col-md-2"><select class="form-control">
-											<option>San Fernando</option>
-											<option>Angeles City</option></select></div>
-	  <div class="col-md-1"><label>Farmer</label></div><div class="col-md-2"><select class="form-control">
-											<option>Revidad</option></select></div>
-	  <div class="col-md-1"><label>Farm</label></div><div class="col-md-2"><select class="form-control">
-											<option>Farm 1</option>
-											<option>Farm 2</option></select></div>
-	  </div>
-	  </br>
-	  <div class="row">
-	  <div class="col-md-2">
-	  
-	  </div>
-	  <div class="col-md-1"><label>Municipality</label></div><div class="col-md-2"><select class="form-control">
-											<option>San Fernando</option>
-											<option>Angeles City</option></select></div>
-	  <div class="col-md-1"><label>Farmer</label></div><div class="col-md-2"><select class="form-control">
-											<option>Revidad</option></select></div>
-	  <div class="col-md-1"><label>Farm</label></div><div class="col-md-2"><select class="form-control">
-											<option>Farm 1</option><option>Farm 2</option></select></div>
+          
+	<div class="col-md-12">
+         
+            
+            
+            
+            
+	  <div class="col-md-1"><label>Barangay</label></div>
+         
+          <div class="col-md-2"><select class="form-control" id="brgyname" name="brgyname" onchange="if(this.value != '0')this.form.submit();">
+					<option value="0">Select Brgy.</option>
+											
+              <% //ArrayList<Comparison> brgylist =  new ComparisonDB().viewBarangayList();
+              ArrayList<Comparison> brgylist =(ArrayList<Comparison>) session.getAttribute("brgy");
+               ArrayList<Farmer> farmerlist =(ArrayList<Farmer>) session.getAttribute("frmer");
+             ArrayList<Farm>farmlist=(ArrayList<Farm>) session.getAttribute("frm");
+              ArrayList<Projects> farmprojlist=(ArrayList<Projects>) session.getAttribute("frmProj");
+              
+               
+                                        if (brgylist != null){
+                                            for (int i = 0; i < brgylist.size(); i++) {
+          if(brgylist.get(i).isSelected()){
+            //  farmerlist=brgylist.get(i).getFarmer();
+          
+               %>
+                   <option  value="<%= brgylist.get(i).getBrgy() %>"  selected><%= brgylist.get(i).getBrgy() %></option>
+                                            
+          <% }else{ %>
+                   <option value="<%= brgylist.get(i).getBrgy() %>" ><%= brgylist.get(i).getBrgy() %></option>
+                  <%                           
+                  }
+                                            }
+                                        }
+          %>                                                             
+                                                                                        
+                                                                                    </select></div>
 	
-	  
+        <% 
+            if (brgylist != null && farmerlist!=null){ 
+     
+         
+           %>
+       <div class="col-md-1"><label>Farmer</label>
+          </div><div class="col-md-2"> <select class="form-control" id="farmername" name="farmername" onchange="if(this.value != '0')this.form.submit();">
+						<option value="0">Select Farmer</option>
+                                 
+           <%                                 for (int i = 0; i < farmerlist.size(); i++) {
+          if(farmerlist.get(i).isIsselected()){
+         //     farmlist=  farmerlist.get(i).getFarm();
+               %>
+               <option  value="<%= farmerlist.get(i).getUsername()%>"  selected><%= farmerlist.get(i).getUsername() %></option>
+                   
+               <% } else{ %>
+                          <option  value="<%=farmerlist.get(i).getUsername() %>" ><%= farmerlist.get(i).getUsername() %></option>
+                              <%              }  
+           
+                     }  %>  
+                    
+              
+              </select></div>
+	    <%    }  %>
+            
+                <% 
+            if (brgylist != null && farmerlist!=null && farmlist!=null){ 
+                
+                
+                %>
+                
+                          <div class="col-md-1"><label>Farm</label></div>
+          <div class="col-md-2"><select class="form-control" id="farmname" name="farmname" onchange="if(this.value != '0')this.form.submit();">
+                                                <option value="0">Select Farm</option>
+                                                
+                                                
+                <%
+     for(int i=0; i <farmlist.size();i++){
+     
+        if(farmlist.get(i).isSelected()==true){     
+                %>
+            <option selected><%=farmlist.get(i).getFarm_name() %></option>  
+     
+     <%
+     }else{
+         %>
+       <option><%=farmlist.get(i).getFarm_name() %></option>  
+  <%   }   
+     
+      }
+           %>
+           
+
+          </select></div>
+             <%    
+     }
+             %>
+             
+                  
+                   
+	  </div>
+      
+                </div>
+	
+	  <div class="row">
+              
+             <div class="col-md-12">
+         
+            
+            
+            
+            
+	  <div class="col-md-1"><label>Barangay</label></div>
+         
+          <div class="col-md-2"><select class="form-control" id="brgyname2" name="brgyname2" onchange="if(this.value != '0')this.form.submit();">
+					<option value="0">Select Brgy.</option>
+											
+              <% //ArrayList<Comparison> brgylist =  new ComparisonDB().viewBarangayList();
+              ArrayList<Comparison> brgylist2 =(ArrayList<Comparison>) session.getAttribute("brgy2");
+               ArrayList<Farmer> farmerlist2 =(ArrayList<Farmer>) session.getAttribute("frmer2");
+             ArrayList<Farm>farmlist2=(ArrayList<Farm>) session.getAttribute("frm2");
+              ArrayList<Projects> farmprojlist2=(ArrayList<Projects>) session.getAttribute("frmProj2");
+              
+               
+                                        if (brgylist2 != null){
+                                            for (int i = 0; i < brgylist2.size(); i++) {
+          if(brgylist2.get(i).isSelected()){
+            //  farmerlist=brgylist.get(i).getFarmer();
+          
+               %>
+                   <option  value="<%= brgylist2.get(i).getBrgy() %>"  selected><%= brgylist2.get(i).getBrgy() %></option>
+                                            
+          <% }else{ %>
+                   <option value="<%= brgylist2.get(i).getBrgy() %>" ><%= brgylist2.get(i).getBrgy() %></option>
+                  <%                           
+                  }
+                                            }
+                                        }
+          %>                                                             
+                                                                                        
+                                                                                    </select></div>
+	
+        <% 
+            if (brgylist2 != null && farmerlist2!=null){ 
+     
+         
+           %>
+       <div class="col-md-1"><label>Farmer</label>
+          </div><div class="col-md-2"> <select class="form-control" id="farmername2" name="farmername2" onchange="if(this.value != '0')this.form.submit();">
+						<option value="0">Select Farmer</option>
+                                 
+           <%                                 for (int i = 0; i < farmerlist2.size(); i++) {
+          if(farmerlist2.get(i).isIsselected()){
+         //     farmlist=  farmerlist.get(i).getFarm();
+               %>
+               <option  value="<%= farmerlist2.get(i).getUsername()%>"  selected><%= farmerlist2.get(i).getUsername() %></option>
+                   
+               <% } else{ %>
+                          <option  value="<%=farmerlist2.get(i).getUsername() %>" ><%= farmerlist2.get(i).getUsername() %></option>
+                              <%              }  
+           
+                     }  %>  
+                    
+              
+              </select></div>
+	    <%    }  %>
+            
+                <% 
+            if (brgylist2 != null && farmerlist2!=null && farmlist2!=null){ 
+                
+                
+                %>
+                
+                          <div class="col-md-1"><label>Farm</label></div>
+          <div class="col-md-2"><select class="form-control" id="farmname2" name="farmname2" onchange="if(this.value != '0')this.form.submit();">
+                                                <option value="0">Select Farm</option>
+                                                
+                                                
+                <%
+     for(int i=0; i <farmlist2.size();i++){
+     
+        if(farmlist2.get(i).isSelected()==true){     
+                %>
+            <option selected><%=farmlist2.get(i).getFarm_name() %></option>  
+     
+     <%
+     }else{
+         %>
+       <option><%=farmlist2.get(i).getFarm_name() %></option>  
+  <%   }   
+     
+      }
+           %>
+           
+
+          </select></div>
+             <%    
+     }
+             %>
+             
+                  
+                   
+	  </div>
+             </div>
+            	   </form>
+
+             
+	    <div class="row">
 	 
-	  
-  
    <div class="col-md-5">
        <br>
           <!-- LINE CHART -->
-          <div class="box box-success">
+          <div class="box box-success collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">Location Map A</h3>
 
@@ -129,12 +308,12 @@ desired effect
 <div class="col-md-5">
     <br>
           <!-- LINE CHART -->
-          <div class="box box-success">
+          <div class="box box-success collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">Location Map B</h3>
 
               <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                  <button type="button" class="btn btn-box-tool"  data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
               </div>
@@ -147,7 +326,7 @@ desired effect
 </div>
 	<div class="col-md-12">
           <!-- LINE CHART -->
-          <div class="box box-info">
+          <div class="box box-info collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">Production add bar chart(blue-municipality|green-farm 1|red-farm 2)</h3>
 
@@ -171,7 +350,7 @@ desired effect
         
 	 <div class="col-md-12">
           <!-- LINE CHART -->
-          <div class="box box-success">
+          <div class="box box-success collapsed-box">
             <div class="box-header with-border">
               <h3 class="box-title">Current Production</h3>
 
@@ -197,6 +376,7 @@ desired effect
             <div class="box-header with-border">
               <h3 class="box-title">#1 Details</h3>
 
+             
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -216,7 +396,8 @@ desired effect
 				  <th>%RC</th>
 				  <th>detailsbtn</th>
 				</tr>
-                <tr>
+                <%     %>
+                     <tr>
                   <td >John Doe</td>
 				<td>1.23</td>
                   <td>35%</td>
@@ -341,7 +522,9 @@ desired effect
             <!-- /.box-body -->
           </div>
 		  </div>
-<div class="col-md-6">
+          
+         
+    <div class="col-md-6">
           <!-- LINE CHART -->
           <div class="box box-info">
             <div class="box-header with-border">
@@ -359,42 +542,53 @@ desired effect
                 <tbody><tr>
                   <th>Name</th>
                   <th>Status</th>
-				  <th>Reason/Problems</th>
-				   <th>Edit button</th>
-				  <th>Add button</th>
+		 <th>Reason/Problems</th>
+				  
                  
                 </tr>
-                <tr>
-                  <td href="" >John Doe</td>
-                  
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-				  <td>Addbtn</td>
-                </tr>
-                <tr>
+                 <% 
+            
+           
+            if(farmprojlist!=null){
+              %>
+            <%    
+                 for(int c=0; c<farmprojlist.size();c++){
+           
+       %>
+                
+       <tr>
+                  <td><a href="ViewProject?id=<%= farmprojlist.get(c).getProject_num()%>"><%=farmprojlist.get(c).getName() %></a></td>
+                   <% 
+              if (farmprojlist.get(c).getStatus().equalsIgnoreCase("A")){
+              %>
+            <td>  <span class="label label-success">Approved</span></td>
+              <% } 
+              else if (farmprojlist.get(c).getStatus().equalsIgnoreCase("P")){
+              %>
+               <td>  <span class="label label-warning">Pending</span></td>
+             
+              <% } 
+               else if (farmprojlist.get(c).getStatus().equalsIgnoreCase("O")){
+              %>
+               <td>  <span class="label label-primary">On Going</span></td>
+                <% }
+              else {
+              %>
+               <td>  <span class="label label-danger">Denied</span></td>
                
-                  <td href="" >Alexander Pierce</td>
-					<td><span class="label label-warning">Pending</span></td>
-                   <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				    <th>Edit</th>
-				   <td>Addbtn</td>
-                </tr>
-                <tr>
-                  
-                  <td href="threshold.html" >Bob Doe</td>
-                  <td><span class="label label-primary">Approved</span></td>
-				  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-                 <td>Addbtn</td>
-                </tr>
-                <tr>
-                  <td href="" >Mike Doe</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-				    <td>Addbtn</td>
-                </tr>
+              <% } %>
+                  <td><%=farmprojlist.get(c).getDescription() %></td>
+				 
+                 
+       </tr>     
+                
+                
+                
+                
+                <%
+       } %>
+       
+       <% } %>
               </tbody></table>
 			  <div class="box-footer clearfix">
               <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Create New Plans</a>
@@ -404,6 +598,9 @@ desired effect
             <!-- /.box-body -->
           </div>
 		  </div>
+
+
+
 		  <div class="col-md-6">
           <!-- LINE CHART -->
           <div class="box box-info">
@@ -422,42 +619,53 @@ desired effect
                 <tbody><tr>
                   <th>Name</th>
                   <th>Status</th>
-				  <th>Reason/problems</th>
-				   <th>Edit button</th>
-				  <th>Add button</th>
+		 <th>Reason/Problems</th>
+				  
                  
                 </tr>
-                <tr>
-                  <td href="" >John Doe</td>
-                  
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-				  <td>Addbtn</td>
-                </tr>
-                <tr>
+                 <% 
+            
+           
+            if(farmprojlist2!=null){
+              %>
+            <%    
+                 for(int c=0; c<farmprojlist2.size();c++){
+           
+       %>
+                
+       <tr>
+                  <td><a href="ViewProject?id=<%= farmprojlist2.get(c).getProject_num()%>"><%=farmprojlist2.get(c).getName() %></a></td>
+                   <% 
+              if (farmprojlist2.get(c).getStatus().equalsIgnoreCase("A")){
+              %>
+            <td>  <span class="label label-success">Approved</span></td>
+              <% } 
+              else if (farmprojlist2.get(c).getStatus().equalsIgnoreCase("P")){
+              %>
+               <td>  <span class="label label-warning">Pending</span></td>
+             
+              <% } 
+               else if (farmprojlist2.get(c).getStatus().equalsIgnoreCase("O")){
+              %>
+               <td>  <span class="label label-primary">On Going</span></td>
+                <% }
+              else {
+              %>
+               <td>  <span class="label label-danger">Denied</span></td>
                
-                  <td href="" >Alexander Pierce</td>
-					<td><span class="label label-warning">Pending</span></td>
-                   <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				    <th>Edit</th>
-				   <td>Addbtn</td>
-                </tr>
-                <tr>
-                  
-                  <td href="threshold.html" >Bob Doe</td>
-                  <td><span class="label label-primary">Approved</span></td>
-				  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-                 <td>Addbtn</td>
-                </tr>
-                <tr>
-                  <td href="" >Mike Doe</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-				   <th>Edit</th>
-				    <td>Addbtn</td>
-                </tr>
+              <% } %>
+                  <td><%=farmprojlist2.get(c).getDescription() %></td>
+				 
+                 
+       </tr>     
+                
+                
+                
+                
+                <%
+       } %>
+       
+       <% } %>
               </tbody></table>
 			  <div class="box-footer clearfix">
               <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-right">Create New Plans</a>

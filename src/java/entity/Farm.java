@@ -13,7 +13,7 @@ public class Farm {
 
     private String owner;
     private String farm_name;
-    private String district;
+    private String district,barangay;
     private double area;
     private String management_type;
     private String address;
@@ -21,6 +21,7 @@ public class Farm {
     private String boundaries;
     private double latCenter;
     private double lngCenter;
+    private boolean selected;
 
     /**
      * @return the owner
@@ -202,6 +203,34 @@ public class Farm {
      */
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    /**
+     * @return the selected
+     */
+    public boolean isSelected() {
+        return selected;
+    }
+
+    /**
+     * @param selected the selected to set
+     */
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    /**
+     * @return the barangay
+     */
+    public String getBarangay() {
+        return barangay;
+    }
+
+    /**
+     * @param barangay the barangay to set
+     */
+    public void setBarangay(String barangay) {
+        this.barangay = barangay;
     }
 
 }

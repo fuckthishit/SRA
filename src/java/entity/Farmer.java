@@ -5,6 +5,8 @@
  */
 package entity;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Bryll Joey Delfin
@@ -13,6 +15,8 @@ public class Farmer {
     private String username, cell_num,name, address ,sugarcane_variety, farm_name;
     private int gender, education, civil_status;
     private Double area_harveted, tons_cane, lkg;
+    private boolean isselected;
+    private ArrayList<Farm> farm;
 
     /**
      * @return the username
@@ -180,5 +184,33 @@ public class Farmer {
      */
     public void setFarm_name(String farm_name) {
         this.farm_name = farm_name;
+    }
+
+    /**
+     * @return the isselected
+     */
+    public boolean isIsselected() {
+        return isselected;
+    }
+
+    /**
+     * @param isselected the isselected to set
+     */
+    public void setIsselected(boolean isselected) {
+        this.isselected = isselected;
+    }
+
+    /**
+     * @return the farm
+     */
+    public ArrayList<Farm> getFarm() {
+        return farm;
+    }
+
+    /**
+     * @param farm the farm to set
+     */
+    public void setFarm(ArrayList<Farm> farm) {
+        this.farm = farm;
     }
 }

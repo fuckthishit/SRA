@@ -1,11 +1,11 @@
+package controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
-
-import db.ProjectsDB;
+import controller.BaseServlet;
 import db.RecommendationDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,22 +21,27 @@ import javax.servlet.http.HttpSession;
  *
  * @author ndrs
  */
-public class ViewProblem extends BaseServlet {
+public class ViewAllSolution extends BaseServlet {
 
+     /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
    
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           RecommendationDB recDB = new RecommendationDB();
-           ProjectsDB projDB = new ProjectsDB();
+            RecommendationDB recDB = new RecommendationDB();
+        
         HttpSession session = request.getSession();
-       int id= Integer.parseInt(request.getParameter("id"));
-       
-          session.setAttribute("id", id);
-          session.setAttribute("problem", recDB.viewProblem(id));
-          session.setAttribute("acceptedProjects", recDB.viewAcceptedProject(id));
-          session.setAttribute("allProjects", projDB.viewOtherProjects(id));
-        ServletContext context = getServletContext();
-        RequestDispatcher rd = context.getRequestDispatcher("/Solutions.jsp");
-        rd.forward(request, response);   
-    }
+       int id= Integer.parseInt(request.getParameter("rowid"));
+        int probid= Integer.parseInt(request.getParameter("probid").trim());
+    
+        recDB.addAccPrograms(probid,id);
+ }
+
 }

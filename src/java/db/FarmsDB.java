@@ -3,7 +3,10 @@ package db;
 import entity.Farm;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,5 +54,34 @@ public class FarmsDB {
              Logger.getLogger(FarmsDB.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    public ArrayList<Farm> getFarmsTable() {
+        try {
+            DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
+            Connection conn = myFactory.getConnection();
+            String query = "select f.farm_name,f.owner,f.barangay from farms f;";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            ArrayList<Farm> farms = null;
+            Farm farm;
+            if (rs.next()) {
+                farms = new ArrayList<Farm>();
+                do {
+                    farm = new Farm();
+                    farm.setFarm_name(rs.getString(1));
+                    farm.setOwner(rs.getString(2));
+                    farm.setBarangay(rs.getString(3));
+                  
+                    farms.add(farm);
+                } while (rs.next());
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return farms;
+        } catch (SQLException ex) {
+            Logger.getLogger(FarmersDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

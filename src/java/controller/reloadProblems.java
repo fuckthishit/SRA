@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import controller.BaseServlet;
+package controller;
+
+import db.ProjectsDB;
 import db.RecommendationDB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,9 +21,9 @@ import javax.servlet.http.HttpSession;
  *
  * @author ndrs
  */
-public class ViewAllSolution extends BaseServlet {
+public class reloadProblems extends BaseServlet {
 
-     /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -30,16 +32,20 @@ public class ViewAllSolution extends BaseServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   
+
     @Override
     public void servletAction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            RecommendationDB recDB = new RecommendationDB();
-        
+       RecommendationDB recDB = new RecommendationDB();
+           ProjectsDB projDB = new ProjectsDB();
         HttpSession session = request.getSession();
-       int id= Integer.parseInt(request.getParameter("rowid"));
-        int probid= Integer.parseInt(request.getParameter("probid").trim());
-    
-        recDB.addAccPrograms(probid,id);
- }
-
+       int id= Integer.parseInt(request.getParameter("id"));
+        session.setAttribute("problem", recDB.viewProblem(id));
+          session.setAttribute("acceptedProjects", recDB.viewAcceptedProject(id));
+          session.setAttribute("allProjects", projDB.viewOtherProjects(id));
+        ServletContext context = getServletContext();
+        RequestDispatcher rd = context.getRequestDispatcher("/Solutions.jsp");
+        rd.forward(request, response);   
+    }
 }
+
+
