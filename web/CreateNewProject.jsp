@@ -92,13 +92,10 @@ desired effect
 
       <!-- Your Page Content Here -->
 	  <div class="row">
-             <%String y=(String)session.getAttribute("jsonlist");
-             
-           
-             %> 
+         
               
               
-              
+                 <form id="frm-example" action="CreateNewProject">
               <div class="col-md-6">
 	  <div class="box box-solid box-success">
 	  <div class="box-header with-border">
@@ -108,7 +105,7 @@ desired effect
 	  <div class="box-body">
               <div class="form-group">
                   <label for="projectname" class="control-label">Project Name:</label>
-                 <input type="text" class="form-control" id="projectname" placeholder="Name...">
+                 <input type="text" class="form-control" name="projectname" id="projectname" placeholder="Name...">
                 </div>
               <div  class="form-group">
                 <label class="control-label" for="datepicker" >Date Start:</label>
@@ -116,79 +113,74 @@ desired effect
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right datepicker" id="datepicker">
+                  <input type="text" class="form-control pull-right datepicker" name="datepicker" id="datepickerstart">
                 </div>
                 <!-- /.input group -->
               </div>
               <div  class="form-group">
-                <label class="control-label" for="datepicker" >Date End:</label>
+                <label class="control-label" for="dateend" >Date End:</label>
                 <div class="input-group date">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right datepicker" id="datepicker">
+                  <input type="text" class="form-control pull-right datepicker" name="dateend" id="datepickerend">
                 </div>
                 <!-- /.input group -->
               </div>
               <div class="form-group">
                   <label for="projectname" class="control-label">Expected Improvement</label>
-              <input type="number" class="form-control" id="projectname" placeholder="Yield || % ????">
+              <input type="number" class="form-control" id="possyield" placeholder="Yield || % ????">
                </div>
                <div class="form-group">
                   <label>Description</label>
                   <textarea class="form-control" name="Description" rows="2"  placeholder="Enter ..."></textarea>
                 </div>
 	  <div class="form-group">
-                  <label>Fertilizer</label>
+                  <label>Type</label>
                   <select class="form-control">
-                    <option>Fertilizer 1</option>
-                    <option>Fertilizer 2</option>
-                    <option>Fertilizer 3</option>
-                    <option>Fertilizer 4</option>
-                    <option>Fertilizer 5</option>
-                  </select>
+                    <option>Technology</option>
+                    <option>Training</option>
+                    <option>Practices</option>
+                 </select>
                 </div>
-		<button class="btn btn-sm btn-info btn-flat pull-left">Submit</button>
+		<button class="btn btn-sm btn-info btn-flat pull-left"  value="submit">Submit</button>
 	  </div>
 	  </div>
 	  </div>
               
+       
               
               
-              
-              
-              
-	  <div class="col-md-3">
-	  <div ><label>Select By:</label></div>
-           <select class="form-control"><option>Municipality</option>
-      <option>Barangay</option>
-     <option>Farmer</option>
-        <option>Farm</option></select></div>
-	 
-          
-               <div class="col-md-6">
+              <div class="col-md-6">
 	  <div class="box box-solid box-info">
 	  <div class="box-header with-border">
-	  <h3 class="box-title">Table</h3>
+	  <h3 class="box-title">Aims to Solve</h3>
 	  </div>
 	  <br>
 	  <div class="box-body">
-              <table id="table" data-toggle="table" data-search="true" data-click-to-select="true">
-                  <thead>
-                  <tr>
-                  <th data-field="state" data-checkbox="true"></th>
-                  <th data-field="farm_name">id</th>
-                  <th data-field="owner">name</th>
-                  <th data-field="barangay">price</th>
-                  </tr>    
-                  </thead>
-                      </table>
+              <table id="probTable" class="table  dispTable table-hover" cellspacing="0" width="100%">
+   <thead>
+      <tr>
+          <th><input name="select_all" value="1" id="probTable-select-all" type="checkbox" /></th>
+          <th>Problem</th>
+         <th>Description</th>
+     </tr>
+   </thead>
+   <tfoot>
+      <tr>
+         <th></th>
+          <th>Problem</th>
+         <th>Description</th>
+    
+      </tr>
+   </tfoot>
+</table>
               
              </div>
           </div>
                    </div>
-               <form id="frm-example" action="CreateNewProject">
-              <div class="col-md-8">
+              
+              <div class="col-md-6">
 	  <div class="box box-solid box-info">
 	  <div class="box-header with-border">
 	  <h3 class="box-title">List of Farms</h3>
@@ -220,13 +212,8 @@ desired effect
           </div>
                    </div>
 <div class="col-md-5">                   
-<p><button class="btn btn-success" value="submit">Submit</button></p>
+    <p><button class="btn btn-success" value="submit">Submit</button></p>
 
-<p><b>Selected rows data:</b></p>
-<pre id="example-console-rows"></pre>
-
-<p><b>Form data as submitted to the server:</b></p>
-<pre id="example-console-form"></pre>
 </div>
 
 
@@ -362,13 +349,9 @@ desired effect
 <!-- ChartJS 1.0.1 -->
 <script src="plugins/chartjs/Chart.min.js"></script>
 <script src="plugins/datepicker/bootstrap-datepicker.js"></script>
-<script src="plugins/bootstraptable/bootstrap-table.js"></script>
 
-    <script>
-        $('#table').bootstrapTable({
-             url: 'JSON/data.json'
-});
-        </script>
+
+   
         <script>
     $(function () {
        $('.datepicker').datepicker({
@@ -389,52 +372,97 @@ desired effect
       },
      'columnDefs': [{
          'targets': 0,
-       
          'searchable':false,
          'orderable':false,
          'className': 'dt-body-center',
          'render': function (data,type,full,meta){
-             return '<input type="checkbox" name="id" id="buttonClick" value="' 
+             return '<input type="checkbox" name="id[]" id="buttonClick" value="' 
                 + $('<div/>').text(data).html() + '">';
          } 
       }],
       'select': {
          'style': 'multi'
       },
-      'order': [[1, 'asc']],
-       'rowCallback': function(row, data, dataIndex){
-         // Get row ID
-       var rowId = data[0];
-       // alert(rowId);
-         // If row ID is in the list of selected row IDs
-         if($.inArray(rowId, rows_selected) !== -1){
-            $(row).find('input[type="checkbox"]').prop('checked', true);
-            $(row).addClass('selected');
-         }
-      }
-      
+      'order': [[1, 'asc']]
+//      ,
+//       'rowCallback': function(row, data, dataIndex){
+//         // Get row ID
+//       var rowId = data[0];
+//       // alert(rowId);
+//         // If row ID is in the list of selected row IDs
+//         if($.inArray(rowId, rows_selected) !== -1){
+//            $(row).find('input[type="checkbox"]').prop('checked', true);
+//            $(row).addClass('selected');
+//         }
+//      }     
       
    });
-  
-   // Handle form submission event 
-   
-   
-      $('#frm-example').on('submit', function(){
-          alert();
+   var table1 = $('#probTable').DataTable({
+      'ajax': {
+          'url':'CreateProbTable'
+      },
+     'columnDefs': [{
+         'targets': 0,
+         'searchable':false,
+         'orderable':false,
+         'className': 'dt-body-center',
+         'render': function (data,type,full,meta){
+             return '<input type="checkbox" name="probid[]"  value="' 
+                + $('<div/>').text(data).html() + '">';
+         } 
+      }],
+      'select': {
+         'style': 'multi'
+      },
+      'order': [[1, 'asc']]
+//      ,
+//       'rowCallback': function(row, data, dataIndex){
+//         // Get row ID
+//       var rowId = data[0];
+//       // alert(rowId);
+//         // If row ID is in the list of selected row IDs
+//         if($.inArray(rowId, rows_selected) !== -1){
+//            $(row).find('input[type="checkbox"]').prop('checked', true);
+//            $(row).addClass('selected');
+//         }
+//      }     
+      
+   });
+$('#frm-example').on('submit', function(e){
       var form = this;
-       
-      // Iterate over all selected checkboxes
-      $.each(rows_selected, function(index, rowId){
-        
-        alert(rowId);
-         // Create a hidden element 
-         $(form).append(
-             $('<input>')
-                .attr('type', 'hidden')
-                .attr('name', rows_selected)
-                .val(rowId)
-         );
+
+      // Iterate over all checkboxes in the table
+      table.$('input[type="checkbox"]').each(function(){
+         // If checkbox doesn't exist in DOM
+         if(!$.contains(document, this)){
+            // If checkbox is checked
+            if(this.checked){
+               // Create a hidden element 
+               $(form).append(
+                  $('<input>')
+                     .attr('type', 'hidden')
+                     .attr('name', this.name)
+                     .val(this.value)
+               );
+            }
+         } 
       });
+table1.$('input[type="checkbox"]').each(function(){
+         // If checkbox doesn't exist in DOM
+         if(!$.contains(document, this)){
+            // If checkbox is checked
+            if(this.checked){
+               // Create a hidden element 
+               $(form).append(
+                  $('<input>')
+                     .attr('type', 'hidden')
+                     .attr('name', this.name)
+                     .val(this.value)
+               );
+            }
+         } 
+      });
+    
    });
    
     $('#example-select-all').on('click', function(){
@@ -442,24 +470,29 @@ desired effect
       var rows = table.rows({ 'search': 'applied' }).nodes();
       $('input[type="checkbox"]', rows).prop('checked', this.checked);
     
-        alert(rows);
    });
-   
-    $('#buttonClick').on('click', function(){
+     $('#probTable-select-all').on('click', function(){
       // Check/uncheck all checkboxes in the table
-      
-      alert(rowId);
+      var rows = table1.rows({ 'search': 'applied' }).nodes();
+      $('input[type="checkbox"]', rows).prop('checked', this.checked);
     
    });
+   
+//    $('#buttonClick').on('click', function(){
+//      // Check/uncheck all checkboxes in the table
+//      
+//      alert(rowId);
+//    
+//   });
    
    
 });
 
-$(document).on("click", function () {
-       $('[id="buttonClick"]:checked').each(function (e) {
-          
-        });
-   });
+//$(document).on("click", function () {
+//       $('[id="buttonClick"]:checked').each(function (e) {
+//          
+//        });
+//   });
            </script>
            
            <script>

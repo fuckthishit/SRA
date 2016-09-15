@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="security.jsp" %>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Projects"%>
@@ -95,14 +96,41 @@ desired effect
 		<th>Date</th>
 		<th>Status</th>
 	  </tr>
+          
+          
+          
+       
+          <c:forEach items="${projectList}" var="plist">
+        <tr>
+              <td><c:out value="${plist.project_num}"></c:out></td>
+              <td><a href="ViewProject?id=${plist.project_num}"><c:out value="${plist.name}"></c:out></a></td>
+              <td><c:out value="${plist.date_created}"></c:out></td>
+             <td>
+              <c:choose>
+                  <c:when test="${plist.status eq 'A'}">
+                      <span class="label label-success">Approved</span>
+                  </c:when>
+                  <c:when test="${plist.status eq 'P'}">
+                     <span class="label label-warning">Pending</span>
+                  </c:when>
+                  <c:when test="${plist.status eq 'D'}">
+                     <span class="label label-danger">Denied</span>
+                  </c:when>
+                  <c:otherwise>
+                     <span class="label label-primary">On going</span>
+                   </c:otherwise>
+          </c:choose>
+              </td>
+                  
+              </tr>
+              </c:forEach>
+    
           <% 
           ArrayList<Projects> list = (ArrayList<Projects>) session.getAttribute("projectList");
           if (list!=null)
           {
               for (int i =0; i < list.size(); i++){
-          
           %>
-          <tr>
               <td><%= list.get(i).getProject_num() %></td>
               <td><a href="ViewProject?id=<%= list.get(i).getProject_num() %>"><%= list.get(i).getName() %></a></td>
           <td><%= list.get(i).getDate_created() %></td>
@@ -124,7 +152,6 @@ desired effect
               %>
               <span class="label label-primary">On Going</span>
               <% } %>
-              
           </td>
           </tr>
           <% 

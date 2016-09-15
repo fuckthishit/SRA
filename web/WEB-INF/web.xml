@@ -108,6 +108,10 @@
         <servlet-name>CreateNewProjectTest</servlet-name>
         <servlet-class>controller.CreateNewProjectTest</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateProbTable</servlet-name>
+        <servlet-class>controller.CreateProbTable</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>CreateNewProjectTest</servlet-name>
         <url-pattern>/CreateNewProjectTest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateProbTable</servlet-name>
+        <url-pattern>/CreateProbTable</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -5,8 +5,11 @@
  */
 package controller;
 
+import db.ComparisonDB;
 import db.FarmsDB;
+import db.RecommendationDB;
 import entity.Farm;
+import entity.Problems;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,24 +24,33 @@ import org.json.simple.JSONObject;
  *
  * @author ndrs
  */
-public class CreateNewProjectTest extends HttpServlet {
+public class CreateProbTable extends HttpServlet {
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        // response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
        
-          FarmsDB fbDB= new FarmsDB();
+          RecommendationDB recdb=new RecommendationDB();
           //  String farmtable=request.getParameter("farmT");
           JSONObject data=new JSONObject();
-          ArrayList<Farm> farmT=fbDB.getFarmsTable();
+          ArrayList<Problems> probT=recdb.viewProblemList();
         JSONArray list= new JSONArray(); 
-          for(int i=0;i<farmT.size();i++){
+          for(int i=0;i<probT.size();i++){
                ArrayList<String> obj = new ArrayList<String>();
-                 obj.add(farmT.get(i).getFarm_name());
-                obj.add(farmT.get(i).getFarm_name());
-               obj.add(farmT.get(i).getOwner());
-                obj.add(farmT.get(i).getBarangay());
+                 obj.add(probT.get(i).getProblemId().toString());
+                
+                obj.add(probT.get(i).getName());
+               obj.add(probT.get(i).getDescription());
                 list.add(obj);
               
           }
@@ -50,12 +62,19 @@ public class CreateNewProjectTest extends HttpServlet {
         
     }
 
-
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,16 +21,18 @@ public class ProjectsDB {
           try {
             DBConnectionFactory myFactory = DBConnectionFactory.getInstance();
             Connection conn = myFactory.getConnection();
-            String query = "insert into projects values (?,?,?,?,?,?,?,?)";
+            String query = "insert into projects values (?,?,now(),?,?,?,?,?)";
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setInt(1, project.getProject_num());
+             pstmt.setInt(1, getfinalProjectID()+1);
             pstmt.setString(2, project.getName());
-            pstmt.setDate(3, (Date) project.getDate_created());
-            pstmt.setDate(4, (Date) project.getDate_initial());
-            pstmt.setDate(5, (Date) project.getDate_end());
-            pstmt.setString(6, project.getDescription());
-            pstmt.setString(7, project.getStatus());
-            pstmt.setString(8, project.getCreated_by());
+            
+          SimpleDateFormat sdf = new SimpleDateFormat("mm/dd/yyyy");
+         
+            pstmt.setDate(3, (Date) project.getDate_initial());
+            pstmt.setDate(4,(Date)project.getDate_end());
+            pstmt.setString(5, project.getDescription());
+            pstmt.setString(6, project.getStatus());
+            pstmt.setString(7, project.getCreated_by());
             int isSuccess = pstmt.executeUpdate();
             pstmt.close();
             conn.close();
@@ -317,10 +320,6 @@ public class ProjectsDB {
             JSONArray list;
              list= new JSONArray(); 
             if (rs.next()) {
-              
-                
-            
-              
                 do{
                         
                   ArrayList<String> obj = new ArrayList<String>();
