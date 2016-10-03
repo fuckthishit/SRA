@@ -103,7 +103,7 @@ desired effect
           <c:forEach items="${projectList}" var="plist">
         <tr>
               <td><c:out value="${plist.project_num}"></c:out></td>
-              <td><a href="ViewProject?id=${plist.project_num}"><c:out value="${plist.name}"></c:out></a></td>
+              <td><a href="ViewProject?id=${plist.project_num}"> <c:out value="${plist.name}"></c:out></a></td>
               <td><c:out value="${plist.date_created}"></c:out></td>
              <td>
               <c:choose>

@@ -58,80 +58,37 @@
 
       <div class="row">
         <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="box box-primary">
+    <div class="box box-primary">
             <div class="box-body box-profile">
-                <% Farmer farmer = (Farmer) session.getAttribute("farmer");
-                if (farmer !=null) {
-                %>
-              <h3 class="profile-username text-center"><%= farmer.getName() %></h3>
+            
+              <h3 class="profile-username text-center">Henry</h3>
 
-              <p class="text-muted text-center"><%= farmer.getUsername()%></p>
+              <p class="text-muted text-center">Jose</p>
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Phone Number</b> <a class="pull-right"><%= farmer.getCell_num() %></a>
+                  <b>Phone Number</b> <a class="pull-right">0949395893</a>
                 </li>
                 <li class="list-group-item">
                   <b>Gender</b> <a class="pull-right">
-                      <% if (farmer.getGender() == 0) {%>
-                      Male
-                      <% }
-                       else { %>
-                      Female
-                  <% } %>
+                     Male
                   </a>
                 </li>
                 <li class="list-group-item">
                   <b>Education</b> <a class="pull-right">
                   
-                   <% if (farmer.getEducation() == 0) {%>
-                      Elementary
-                      <% }
-                       else if (farmer.getEducation() ==1){ %>
-                      HS-Undergrad
-                  <% }
-                       else if (farmer.getEducation() ==2){ %>
-                      HS-Grad
-                 <% }
-                       else if (farmer.getEducation() ==3){ %>
-                     College-Undergrad
-                  <% }
-                       else if (farmer.getEducation() ==4){ %>
-                      College-Grad
-                  <% }
-                       else if (farmer.getEducation() ==5){ %>
-                      Vocational
-                 <% }
-                       else if (farmer.getEducation() ==6){ %>
-                      N/A
-                  <% } %>
+                  Highschool
                   </a>
                 </li>
 				 <li class="list-group-item">
                   <b>Civil Status</b> <a class="pull-right">
-                      
-                      <% if (farmer.getCivil_status()== 0) {%>
-                      N/A
-                      <% }
-                       else if (farmer.getCivil_status() ==1){ %>
-                      Married
-                  <% }
-                       else if (farmer.getCivil_status() ==2){ %>
-                      Separated
-                 <% }
-                       else if (farmer.getCivil_status() ==3){ %>
-                     Widowed
-                  
-                  <% } %></a>
+                  Married</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Address</b> <a class="pull-right"><%= farmer.getAddress() %></a>
+                  <b>Address</b> <a class="pull-right">#3 sugarcane st. brgy regulations</a>
                 </li>
               </ul>
-              
-              <% } %>
+           
             </div>
             <!-- /.box-body -->
           </div>
